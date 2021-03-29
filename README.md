@@ -10,4 +10,5 @@
 ## 将system注册到eureka
 # 3.30
 ## 新增gateway子模块，增加gateway依赖，并注册到注册中心
+## 在gateway增加system路由转发配置，调试成功
 
