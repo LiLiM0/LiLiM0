@@ -6,4 +6,7 @@
 ## 解决注册中心服务启动失败问题
 ## 美化启动日志
 ## 新增system子模块
-
+## 将system配置成最简单的SpringBoot项目
+## 将system注册到eureka
+# 3.30
+## 新增gateway子模块，增加gateway依赖，并注册到注册中心
