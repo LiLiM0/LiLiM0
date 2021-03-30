@@ -24,3 +24,5 @@
 ## 将通用配置移动到server
 # 3.31
 ## 集成mybatis-generator
+## 解决mapper.xml重复生成代码的问题
+## Example使用示例
