@@ -8,6 +8,7 @@
         <module>system</module>
         <module>gateway</module>
         <module>server</module>
+        <module>teat</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -34,8 +35,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--            集成Mybatis-->
-            <!--            所有版本号管理统一在父模块下管理-->
+            <!--集成Mybatis-->
+            <!--所有版本号管理统一在父模块下管理-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -45,6 +46,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.37</version>
+            </dependency>
+            <!--用于引用server的依赖-->
+            <dependency>
+                <groupId>com.course</groupId>
+                <artifactId>server</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
         </dependencies>

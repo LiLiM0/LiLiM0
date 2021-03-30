@@ -13,13 +13,13 @@
 
     <dependencies>
 
-        <!--        springboot项目基本依赖-->
+        <!--springboot项目基本依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--            集成Mybatis-->
+        <!--集成Mybatis-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -29,7 +29,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- 热部署DevTools -->
+        <!--热部署DevTools-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
