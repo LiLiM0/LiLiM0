@@ -22,3 +22,5 @@
 ## 新建公共模块server
 ## system集成server模块
 ## 将通用配置移动到server
+# 3.31
+## 集成mybatis-generator
