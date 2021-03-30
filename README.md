@@ -20,3 +20,5 @@
 ## 集成热部署Devtools
 ## 优化mybatis日志输出
 ## 新建公共模块server
+## system集成server模块
+## 将通用配置移动到server
