@@ -25,4 +25,9 @@
 # 3.31
 ## 集成mybatis-generator
 ## 解决mapper.xml重复生成代码的问题
-## Example使用示例
+## Example使用示例（类似于sql语句中的where）
+## 配置vue脚手架以及基于Bootstrap框架的ace admin
+## 使用vue cli(4.5.12)新建admin项目
+## 加入ace admin模板
+## index.html中加入ace admin模板所需的js css
+## 在App.vue中加入登录页面的元素
