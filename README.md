@@ -31,3 +31,5 @@
 ## 加入ace admin模板
 ## index.html中加入ace admin模板所需的js css
 ## 在App.vue中加入登录页面的元素
+## 简化登录页面代码
+## 增加eslintrc.js，去掉部分检查项，解决修改代码自动编译时报错：$ is not defined
