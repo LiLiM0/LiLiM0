@@ -39,3 +39,7 @@
 ## 增加login页面登录按钮点击事件，跳转到admin页面
 ## 使用mounted解决组件初始化样式的问题
 ## 增加welcome子组件，增加/admin/welcome子路由
+## 将面包屑导航、搜索、设置删除
+# 4.1
+## 增加js依赖，解决navbar中，三个菜单的点击弹窗效果。js从ace/index.html复制
+## 使用相对路径解决头像路径问题
