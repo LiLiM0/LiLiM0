@@ -36,3 +36,4 @@
 ## 安装vue-router 3.5.1
 ## 增加admin界面
 ## 增加路由配置，访问/admin时，加载admin组件
+## 增加login页面登录按钮点击事件，跳转到admin页面
