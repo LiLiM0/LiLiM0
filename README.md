@@ -38,3 +38,4 @@
 ## 增加路由配置，访问/admin时，加载admin组件
 ## 增加login页面登录按钮点击事件，跳转到admin页面
 ## 使用mounted解决组件初始化样式的问题
+## 增加welcome子组件，增加/admin/welcome子路由
