@@ -33,4 +33,6 @@
 ## 在App.vue中加入登录页面的元素
 ## 简化登录页面代码
 ## 增加eslintrc.js，去掉部分检查项，解决修改代码自动编译时报错：$ is not defined
-## vue router 3.5.1
+## 安装vue-router 3.5.1
+## 增加admin界面
+## 增加路由配置，访问/admin时，加载admin组件
