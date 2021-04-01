@@ -60,4 +60,6 @@
 ## 使用gateway路由转发，vue页面只访问gateway
 ## 解决gateway跨域的问题
 ## 使用lb://+注册中心名称作为路由转发 loadbalance
+# 4.2
+## 集成分页插件pagehelper
 
