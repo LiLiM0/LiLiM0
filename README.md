@@ -51,4 +51,5 @@
 ## 增加dto层，用于controller和service层
 ## 增加ChapterDto
 ## 修改ChapterService，将返回Chapter改为返回ChapterDto
+## 新增了chapter页面及子路由，并使用假数据制作表格
 

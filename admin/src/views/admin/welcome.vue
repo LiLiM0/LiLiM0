@@ -4,12 +4,14 @@
     </div>
 </template>
 
-<!--<script>-->
-<!--    export default {-->
-<!--        name: "welcome"-->
-<!--    }-->
-<!--</script>-->
+<script>
+    export default {
+        name: "welcome",
+        mounted: function () {
+           this.$parent.activeSidebar("welcome-sidebar");
+        },
+        methods: {
 
-<!--<style scoped>-->
-
-<!--</style>-->
+        }
+    }
+</script>
