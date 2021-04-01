@@ -13,7 +13,7 @@
         <tr v-for="chapter in chapters">
             <td>{{chapter.id}}</td>
             <td>{{chapter.name}}</td>
-            <td>{{chapter.courseId  }}</td>
+            <td>{{chapter.courseId}}</td>
             <!--按钮-->
             <td>
                 <div class="hidden-sm hidden-xs btn-group">
@@ -91,7 +91,7 @@
         methods: {
             list() {
                 let _this = this;
-                _this.$ajax.post('http://127.0.0.1:9002/business/admin/chapter/list').then((response) => {
+                _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list').then((response) => {
                     console.log("查询大章列表结果：", response);
                     _this.chapters = response.data;
                 })
