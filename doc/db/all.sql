@@ -7,6 +7,8 @@ create table `chapter`(
 primary key (`id`)
 )engine = innodb default charset=utf8mb4 comment = '大章';
 
+insert into `chapter` (id, course_id, name) values ('00000000','00000000','测试大章一');
+insert into `chapter` (id, course_id, name) values ('00000001','00000000','测试大章二');
 
 ---------测试
 drop table if exists `test`;
