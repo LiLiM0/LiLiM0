@@ -52,4 +52,6 @@
 ## 增加ChapterDto
 ## 修改ChapterService，将返回Chapter改为返回ChapterDto
 ## 新增了chapter页面及子路由，并使用假数据制作表格
+## 点击sidebar菜单实现页面跳转并增加激活样式
+## 路由修改，去掉/admin
 
