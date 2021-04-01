@@ -479,9 +479,38 @@
     export default {
         name: "admin",
         mounted: function () {
+            let _this = this;
             $("body").removeClass("login-layout light-login");
             $("body").attr("class", "no-skin");
             // console.log("admin")
+            _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
+            //
+            // $.getScript('/ace/assets/js/ace.min.js');
+            //
+            // _this.loginUser = Tool.getLoginUser();
+            //
+            // if (!_this.hasResourceRouter(_this.$route.name)) {
+            //     _this.$router.push("/login");
+            // }
+        },
+        // vue内置的watch，用来监听Vue实例上的数据变动。$route也是一个变量。
+        watch: {
+            $route: {
+                handler: function (val, oldVal) {
+                    // sidebar激活样式方法二
+                    console.log("---->页面跳转：", val, oldVal);
+                    let _this = this;
+
+                    // if (!_this.hasResourceRouter(val.name)) {
+                    //     _this.$router.push("/login");
+                    //     return;
+                    // }
+
+                    _this.$nextTick(function () {  //页面加载完成后执行
+                        _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
+                    })
+                }
+            }
         },
         methods: {
             login() {

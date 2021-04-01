@@ -8,10 +8,9 @@
     export default {
         name: "welcome",
         mounted: function () {
-           this.$parent.activeSidebar("welcome-sidebar");
+            // sidebar激活样式方法一
+            // this.$parent.activeSidebar("welcome-sidebar");
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
