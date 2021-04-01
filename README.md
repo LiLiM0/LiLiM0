@@ -48,4 +48,7 @@
 ## 增加business模块，并增加初始启动代码
 ## 增加大章chapter表sql，生成持久层代码
 ## 增加大章列表查询接口
+## 增加dto层，用于controller和service层
+## 增加ChapterDto
+## 修改ChapterService，将返回Chapter改为返回ChapterDto
 
