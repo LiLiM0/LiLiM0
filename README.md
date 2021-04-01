@@ -58,4 +58,5 @@
 ## 增加CorsConfig，解决前后端跨域的问题
 ## 大章页面显示真实数据
 ## 使用gateway路由转发，vue页面只访问gateway
+## 解决gateway跨域的问题
 
