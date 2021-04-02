@@ -69,4 +69,7 @@
 # 4.3
 ## 增加新增大章功能，后端代码开发，完成前后端联调，保存成功
 ## 增加复制工具类CopyUtil，封装BeanUtils.copyProperties，简化实单体复制和列表复制的代码
+## 增加了统一返回实体类ResponseDto，前后端代码针对ResponseDto做修改
+## chapter保存成功后关闭表单，并刷新列表
+## 为modal增加id属性
 
