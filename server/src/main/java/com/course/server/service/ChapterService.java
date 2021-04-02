@@ -23,7 +23,7 @@ public class ChapterService {
     public void list(PageDto pageDto) {
 
         //对往下第一个遇到的select语句进行分页
-        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
 
         //Mybatis自动化curd语句
         ChapterExample chapterExample = new ChapterExample();
@@ -44,6 +44,12 @@ public class ChapterService {
             chapterDtoList.add(chapterDto);
         }
         pageDto.setList(chapterDtoList);
+    }
+
+    public void save(ChapterDto chapterDto) {
+        Chapter chapter = new Chapter();
+        BeanUtils.copyProperties(chapterDto, chapter);
+        chapterMapper.insert(chapter);
     }
 
 }
