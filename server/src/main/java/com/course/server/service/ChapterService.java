@@ -61,17 +61,14 @@ public class ChapterService {
 
     private void insert(Chapter chapter) {
         chapter.setId(UuidUtil.getShortUuid());
-//        Chapter chapter = new Chapter();
-//        BeanUtils.copyProperties(chapterDto, chapter);
         chapterMapper.insert(chapter);
     }
 
     private void update(Chapter chapter) {
-//        chapterDto.setId(UuidUtil.getShortUuid());
-//        Chapter chapter = new Chapter();
-//        BeanUtils.copyProperties(chapterDto, chapter);
-//        Chapter chapter = CopyUtil.copy(chapter, Chapter.class);
         chapterMapper.updateByPrimaryKey(chapter);
     }
 
+    public void delete(String id) {
+        chapterMapper.deleteByPrimaryKey(id);
+    }
 }
