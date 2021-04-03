@@ -82,3 +82,5 @@
 ## 制作confirm组件
 ## 增加工具类tool.js和校验类validator.js
 ## 大章保存非空和长度增加校验
+## 增加后端校验工具类ValidatorUtil
+## 增加统一异常处理，controllerExceptionHandler,关键字：@ControllerAdvice
