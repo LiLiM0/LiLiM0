@@ -1,12 +1,12 @@
 Confirm = {
   show: function (message, callback) {
     Swal.fire({
-      title: '确认？',
+      title: '删除后不可恢复，是否确认删除？',
       text: message,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#4c87bf',
+      cancelButtonColor: '#c95858',
       confirmButtonText: '确认!'
     }).then((result) => {
       if (result.value) {

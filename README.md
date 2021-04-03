@@ -78,4 +78,5 @@
 ## 制作toast组件，内部用sweetalert2实现
 # 4.4
 ## 制作Loading组件，内部用jquery blockui插件实现
-
+## 修改Toast组件的显示效果，更大气
+## 制作confirm组件
