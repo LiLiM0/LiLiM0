@@ -80,3 +80,5 @@
 ## 制作Loading组件，内部用jquery blockui插件实现
 ## 修改Toast组件的显示效果，更大气
 ## 制作confirm组件
+## 增加工具类tool.js和校验类validator.js
+## 大章保存非空和长度增加校验
