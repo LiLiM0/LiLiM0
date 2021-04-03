@@ -32,11 +32,8 @@
                 <!--按钮-->
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">
-                        <button class="btn btn-xs btn-success">
-                            <i class="ace-icon fa fa-check bigger-120"></i>
-                        </button>
 
-                        <button class="btn btn-xs btn-info">
+                        <button @click="edit(chapter)" class="btn btn-xs btn-info">
                             <i class="ace-icon fa fa-pencil bigger-120"></i>
                         </button>
 
@@ -44,11 +41,8 @@
                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
                         </button>
 
-                        <button class="btn btn-xs btn-warning">
-                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                        </button>
                     </div>
-
+                    <!--隐藏按钮-->
                     <div class="hidden-md hidden-lg">
                         <div class="inline pos-rel">
                             <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"
@@ -87,6 +81,7 @@
             </tr>
             </tbody>
         </table>
+
         <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -142,6 +137,14 @@
         methods: {
             add() {
                 let _this = this;
+                _this.chapter = {};
+                $("#form-modal").modal("show");
+            },
+
+            edit(chapter) {
+                let _this = this;
+                //extend 用于避免对页面中变量的临时修改
+                _this.chapter = $.extend({}, chapter);
                 $("#form-modal").modal("show");
             },
             list(page) {
