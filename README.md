@@ -88,3 +88,5 @@
 ## logback增加打印日志跟踪号
 ## 增加generator模块，用于代码生成
 ## 集成freemarker
+## 小节表section表结构设计
+## 生成section表持久层代码
