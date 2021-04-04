@@ -93,4 +93,5 @@
 ## 制作FreemarkerUtil，简化生成器的使用
 ## 新增ServerGenerator，用于生成后端代码：controller service dto
 # 4.5
-## 生成器开发：增加生成service的代码
+## 生成器开发：增加生成service层的代码
+## 生成器开发：增加生成controller层的代码

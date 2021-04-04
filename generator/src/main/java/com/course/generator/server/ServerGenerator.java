@@ -24,6 +24,8 @@ public class ServerGenerator {
 //    static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
 
     static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
+    static String toControllerPath = "business\\src\\main\\java\\com\\course\\business\\controller\\admin\\";
+
 
     public static void main(String[] args) throws IOException, TemplateException {
 //        String module = MODULE;
@@ -68,10 +70,10 @@ public class ServerGenerator {
         // 生成service
         FreemarkerUtil.initConfig("service.ftl");
         FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
-//
-//        // 生成controller
-//        FreemarkerUtil.initConfig("controller.ftl");
-//        FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
+
+        // 生成controller
+        FreemarkerUtil.initConfig("controller.ftl");
+        FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
     }
 //
 //    /**
