@@ -90,3 +90,5 @@
 ## 集成freemarker
 ## 小节表section表结构设计
 ## 生成section表持久层代码
+## 制作FreemarkerUtil，简化生成器的使用
+## 新增ServerGenerator，用于生成后端代码：controller service dto
