@@ -1,5 +1,6 @@
 package com.course.generator.util;
 
+import com.sun.org.apache.xpath.internal.objects.XObject;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
@@ -24,10 +25,10 @@ public class FreemarkerUtil {
         temp = cfg.getTemplate(ftlName);
     }
 
-    public static void generator(String fileName) throws IOException, TemplateException {
+    public static void generator(String fileName, Map<String,Object> map) throws IOException, TemplateException {
         FileWriter fw = new FileWriter(fileName);
         BufferedWriter bw = new BufferedWriter(fw);
-        temp.process(null, bw);
+        temp.process(map, bw);
         bw.flush();
         fw.close();
     }

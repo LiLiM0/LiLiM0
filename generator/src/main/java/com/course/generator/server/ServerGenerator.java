@@ -2,13 +2,19 @@ package com.course.generator.server;
 
 //import com.course.generator.util.DbUtil;
 //import com.course.generator.util.Field;
+
 import com.course.generator.util.FreemarkerUtil;
+import freemarker.template.TemplateException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 //import org.dom4j.Document;
 //import org.dom4j.Element;
 //import org.dom4j.io.SAXReader;
 
-import java.io.File;
-import java.util.*;
+//import java.io.File;
+//import java.util.*;
 
 public class ServerGenerator {
 //    static String MODULE = "business";
@@ -17,9 +23,9 @@ public class ServerGenerator {
 //    static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
 //    static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
 
-    static String toPath = "generator\\src\\main\\java\\com\\course\\generator\\test\\";
+    static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException, TemplateException {
 //        String module = MODULE;
 //
 //        // 只生成配置文件中的第一个table节点
@@ -34,6 +40,9 @@ public class ServerGenerator {
 //        //定义一个Element用于遍历
 //        Element tableElement;
 //        //取第一个“table”的节点
+
+        String Domain = "Section";
+        String domain = "section";
 //        tableElement=contextElement.elementIterator("table").next();
 //        String Domain = tableElement.attributeValue("domainObjectName");
 //        String tableName = tableElement.attributeValue("tableName");
@@ -44,9 +53,9 @@ public class ServerGenerator {
 //
 //        List<Field> fieldList = DbUtil.getColumnByTableName(tableName);
 //        Set<String> typeSet = getJavaTypes(fieldList);
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("Domain", Domain);
-//        map.put("domain", domain);
+        Map<String, Object> map = new HashMap<>();
+        map.put("Domain", Domain);
+        map.put("domain", domain);
 //        map.put("tableNameCn", tableNameCn);
 //        map.put("module", module);
 //        map.put("fieldList", fieldList);
@@ -56,16 +65,13 @@ public class ServerGenerator {
 //        FreemarkerUtil.initConfig("dto.ftl");
 //        FreemarkerUtil.generator(toDtoPath + Domain + "Dto.java", map);
 //
-//        // 生成service
-//        FreemarkerUtil.initConfig("service.ftl");
-//        FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
+        // 生成service
+        FreemarkerUtil.initConfig("service.ftl");
+        FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
 //
 //        // 生成controller
 //        FreemarkerUtil.initConfig("controller.ftl");
 //        FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
-        //生成controller
-        FreemarkerUtil.initConfig("test.ftl");
-        FreemarkerUtil.generator(toPath + "Test.java");
     }
 //
 //    /**
