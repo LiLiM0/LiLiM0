@@ -17,19 +17,18 @@ import java.util.Map;
 //import java.util.*;
 
 public class ServerGenerator {
-//    static String MODULE = "business";
+    static String MODULE = "MODULE";
 //    static String toDtoPath = "server\\src\\main\\java\\com\\course\\server\\dto\\";
-//    static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
 //    static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
 //    static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
 
     static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
-    static String toControllerPath = "business\\src\\main\\java\\com\\course\\business\\controller\\admin\\";
+    static String toControllerPath = MODULE+"\\src\\main\\java\\com\\course\\"+MODULE+"\\controller\\admin\\";
 
 
     public static void main(String[] args) throws IOException, TemplateException {
-//        String module = MODULE;
-//
+        String module = MODULE;
+
 //        // 只生成配置文件中的第一个table节点
 //        File file = new File(generatorConfigPath);
 //        SAXReader reader=new SAXReader();
@@ -45,6 +44,7 @@ public class ServerGenerator {
 
         String Domain = "Section";
         String domain = "section";
+        String tableNameCn = "小节";
 //        tableElement=contextElement.elementIterator("table").next();
 //        String Domain = tableElement.attributeValue("domainObjectName");
 //        String tableName = tableElement.attributeValue("tableName");
@@ -58,8 +58,8 @@ public class ServerGenerator {
         Map<String, Object> map = new HashMap<>();
         map.put("Domain", Domain);
         map.put("domain", domain);
-//        map.put("tableNameCn", tableNameCn);
-//        map.put("module", module);
+        map.put("tableNameCn", tableNameCn);
+        map.put("module", module);
 //        map.put("fieldList", fieldList);
 //        map.put("typeSet", typeSet);
 //
