@@ -101,8 +101,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">${field.nameCn}</label>
                                     <div class="col-sm-10">
-                                        <input v-model="${domain}.${field.nameHump}" class="form-control"
-                                               placeholder="名称">
+                                        <input v-model="${domain}.${field.nameHump}" class="form-control">
                                     </div>
                                 </div>
                                 </#if>
@@ -123,7 +122,7 @@
     import Pagination from "../../components/pagination";
 
     export default {
-        name: "${domain}",
+        name: "${domain}1",
         components: {Pagination},
         data: function () {
             return {

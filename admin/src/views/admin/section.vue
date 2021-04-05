@@ -17,21 +17,21 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                        <th>id</th>
+                <th>id</th>
 
-                        <th>标题</th>
+                <th>标题</th>
 
-                        <th>课程</th>
+                <th>课程</th>
 
-                        <th>大章</th>
+                <th>大章</th>
 
-                        <th>视频</th>
+                <th>视频</th>
 
-                        <th>时长</th>
+                <th>时长</th>
 
-                        <th>收费</th>
+                <th>收费</th>
 
-                        <th>顺序</th>
+                <th>顺序</th>
 
 
                 <th>操作</th>
@@ -40,14 +40,14 @@
 
             <tbody>
             <tr v-for="section in sections">
-                    <td>{{section.id}}</td>
-                    <td>{{section.title}}</td>
-                    <td>{{section.courseId}}</td>
-                    <td>{{section.chapterId}}</td>
-                    <td>{{section.video}}</td>
-                    <td>{{section.time}}</td>
-                    <td>{{section.charge}}</td>
-                    <td>{{section.sort}}</td>
+                <td>{{section.id}}</td>
+                <td>{{section.title}}</td>
+                <td>{{section.courseId}}</td>
+                <td>{{section.chapterId}}</td>
+                <td>{{section.video}}</td>
+                <td>{{section.time}}</td>
+                <td>{{CHARGE | optionKV(section.charge)}}</td>
+                <td>{{section.sort}}</td>
 
                 <!--按钮-->
                 <td>
@@ -107,60 +107,55 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                                aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">表单</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">标题</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.title" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">标题</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.title" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">课程</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.courseId" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">课程</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.courseId" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">大章</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.chapterId" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">大章</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.chapterId" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">视频</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.video" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.video" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">时长</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.time" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">时长</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.time" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">收费</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.charge" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">收费</label>
+                                <div class="col-sm-10">
+                                    <select v-model="section.charge" class="form-control">
+                                        <option v-for="o in CHARGE" v-bind:value="o.key">{{o.value}}</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">顺序</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.sort" class="form-control"
-                                               placeholder="名称">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">顺序</label>
+                                <div class="col-sm-10">
+                                    <input v-model="section.sort" class="form-control">
                                 </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -177,13 +172,14 @@
     import Pagination from "../../components/pagination";
 
     export default {
-        name: "section",
+        name: "section1",
         components: {Pagination},
         data: function () {
             return {
-            section:{},
-            sections: []
-        }
+                section: {},
+                sections: [],
+                CHARGE: [{key: "C", value: "收费"}, {key: "F", value: "免费"}],
+            }
         },
         mounted: function () {
             let _this = this;

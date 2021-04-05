@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './app.vue'
 import router from './router'
 import axios from "axios";
+import filter from "./filter/filter";
 
 Vue.config.productionTip = false
 //Vue.prototype.XXXX Vue组件的全局变量 可以在任意Vue组件中用this.xxx来获取这个值
@@ -24,6 +25,11 @@ axios.interceptors.response.use(function (response) {
     console.log("返回结果：", response);
     return response;
 }, error => {
+});
+
+// 全局过滤器
+Object.keys(filter).forEach(key => {
+    Vue.filter(key, filter[key])
 });
 
 new Vue({
