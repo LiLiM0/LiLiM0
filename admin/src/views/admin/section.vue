@@ -16,28 +16,52 @@
 
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-            <tr><#list fieldList as field>
-                    <th>${field.nameCn}</th>
-                </#list>
+            <tr>
+                    <th>id</th>
+
+                    <th>标题</th>
+
+                    <th>课程</th>
+
+                    <th>大章</th>
+
+                    <th>视频</th>
+
+                    <th>时长</th>
+
+                    <th>收费</th>
+
+                    <th>顺序</th>
+
+                    <th>创建时间</th>
+
+                    <th>修改时间</th>
                 <th>操作</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr v-for="${domain} in ${domain}s">
-                <#list fieldList as field>
-                    <td>{{${domain}.${field.nameHump}}}</td>
-                </#list>
+            <tr v-for="section in sections">
+                    <td>{{section.id}}</td>
+                    <td>{{section.title}}</td>
+                    <td>{{section.courseId}}</td>
+                    <td>{{section.chapterId}}</td>
+                    <td>{{section.video}}</td>
+                    <td>{{section.time}}</td>
+                    <td>{{section.charge}}</td>
+                    <td>{{section.sort}}</td>
+                    <td>{{section.creatAt}}</td>
+                    <td>{{section.updatedAt}}</td>
 
                 <!--按钮-->
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">
 
-                        <button @click="edit(${domain})" class="btn btn-xs btn-info">
+                        <button @click="edit(section)" class="btn btn-xs btn-info">
                             <i class="ace-icon fa fa-pencil bigger-120"></i>
                         </button>
 
-                        <button @click="del(${domain}.id)" class="btn btn-xs btn-danger">
+                        <button @click="del(section.id)" class="btn btn-xs btn-danger">
                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
                         </button>
 
@@ -92,14 +116,66 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
-                            <#list fieldList as field>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">${field.nameCn}</label>
+                                    <label class="col-sm-2 control-label">id</label>
                                     <div class="col-sm-10">
-                                        <input v-model="${domain}.${field.nameHump}" class="form-control" placeholder="名称">
+                                        <input v-model="section.id" class="form-control" placeholder="名称">
                                     </div>
                                 </div>
-                            </#list>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">标题</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.title" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">课程</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.courseId" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">大章</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.chapterId" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">视频</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.video" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">时长</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.time" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">收费</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.charge" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">顺序</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.sort" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">创建时间</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.creatAt" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">修改时间</label>
+                                    <div class="col-sm-10">
+                                        <input v-model="section.updatedAt" class="form-control" placeholder="名称">
+                                    </div>
+                                </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -116,47 +192,47 @@
     import Pagination from "../../components/pagination";
 
     export default {
-        name: "${domain}",
+        name: "section",
         components: {Pagination},
         data: function () {
             return {
-            ${domain}:
+            section:
             {
             }
         ,
-            ${domain}s: []
+            sections: []
         }
         },
         mounted: function () {
             let _this = this;
             _this.list(1);
             // sidebar激活样式方法一
-            // this.$parent.activeSidebar("${module}-${domain}-sidebar");
+            // this.$parent.activeSidebar("business-section-sidebar");
         },
         methods: {
             add() {
                 let _this = this;
-                _this.${domain} = {};
+                _this.section = {};
                 $("#form-modal").modal("show");
             },
 
-            edit(${domain}) {
+            edit(section) {
                 let _this = this;
                 //extend 用于避免对页面中变量的临时修改
-                _this.${domain} = $.extend({}, ${domain});
+                _this.section = $.extend({}, section);
                 $("#form-modal").modal("show");
             },
             list(page) {
                 let _this = this;
                 Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/list', {
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/section/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
                 }).then((response) => {
-                    console.log("查询${tableNameCn}列表结果：", response);
+                    console.log("查询小节列表结果：", response);
                     Loading.hide();
                     let resp = response.data;
-                    _this.${domain}s = resp.content.list;
+                    _this.sections = resp.content.list;
                     _this.$refs.pagination.render(page, resp.content.total);
                 })
             },
@@ -165,18 +241,13 @@
                 let _this = this;
 
                 // 保存校验
-                <#--if (!Validator.require(_this.${domain}.name, "名称")-->
-                <#--    || !Validator.require(_this.${domain}.courseId, "课程ID")-->
-                <#--    || !Validator.length(_this.${domain}.courseId, "课程ID", 1, 8)) {-->
-                <#--    return;-->
-                <#--}-->
 
                 Loading.show();
 
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/save',
-                    _this.${domain}).then((response) => {
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/section/save',
+                    _this.section).then((response) => {
                     Loading.hide();
-                    console.log("保存${tableNameCn}列表结果：", response);
+                    console.log("保存小节列表结果：", response);
                     let resp = response.data;
                     if (resp.success) {
                         $("#form-modal").modal("hide");
@@ -191,9 +262,9 @@
                 let _this = this;
                 Confirm.show(">_<", function () {
                     Loading.show();
-                    _this.$ajax.delete(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/delete/' + id).then((response) => {
+                    _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/section/delete/' + id).then((response) => {
                         Loading.hide();
-                        console.log("删除${tableNameCn}列表结果：", response);
+                        console.log("删除小节列表结果：", response);
                         let resp = response.data;
                         if (resp.success) {
                             _this.list(1);
