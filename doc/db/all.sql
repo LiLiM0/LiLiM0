@@ -1,4 +1,4 @@
-use coursebs;
+# use coursebs;
 drop table if exists `chapter`;
 create table `chapter`(
 `id` char(8) not null comment 'ID',
@@ -28,7 +28,7 @@ insert into `chapter` (id, course_id, name) values ('00000015','00000000','测�
 drop table if exists `section`;
 create table `section`(
 `id` char(8) not null default '' comment 'id',
-`title` varchar (8) not null comment '标题',
+`title` varchar (50) not null comment '标题',
 `course_id` char (8)  comment '课程|course.id',
 `chapter_id` char (8)  comment '大章|chapter.id',
 `video` varchar (200)  comment '视频',

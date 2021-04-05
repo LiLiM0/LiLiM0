@@ -8,8 +8,8 @@ public class Field {
     private String type; // 字段类型：char(8)
     private String javaType; // java类型：String
     private String comment; // 注释：课程|ID
-//    private Boolean nullAble; // 是否可为空
-//    private Integer length; // 字符串长度
+    private Boolean nullAble; // 是否可为空
+    private Integer length; // 字符串长度
 //    private Boolean enums; // 是否是枚举
 //    private String enumsConst; // 枚举常量 COURSE_LEVEL
 
@@ -69,21 +69,21 @@ public class Field {
         this.javaType = javaType;
     }
 
-//    public Boolean getNullAble() {
-//        return nullAble;
-//    }
-//
-//    public void setNullAble(Boolean nullAble) {
-//        this.nullAble = nullAble;
-//    }
-//
-//    public Integer getLength() {
-//        return length;
-//    }
-//
-//    public void setLength(Integer length) {
-//        this.length = length;
-//    }
+    public Boolean getNullAble() {
+        return nullAble;
+    }
+
+    public void setNullAble(Boolean nullAble) {
+        this.nullAble = nullAble;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
+    }
 //
 //    public Boolean getEnums() {
 //        return enums;

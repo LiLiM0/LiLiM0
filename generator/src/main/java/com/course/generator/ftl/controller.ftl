@@ -30,11 +30,22 @@ public class ${Domain}Controller {
         return responseDto;
     }
 
+    /**
+     * 保存，id有值时更新，无值时新增
+     */
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ${Domain}Dto ${domain}Dto) {
-        LOG.info("${domain}Dto:{}", ${domain}Dto);
-
         // 保存校验
+        <#list fieldList as field>
+<#--        <#if field.name!="id" && field.nameHump!="createdAt" && field.nameHump!="updatedAt" && field.nameHump!="sort">-->
+            <#if !field.nullAble>
+        ValidatorUtil.require(${domain}Dto.get${field.nameBigHump}(), "${field.nameCn}");
+            </#if>
+            <#if (field.length > 0)>
+        ValidatorUtil.length(${domain}Dto.get${field.nameBigHump}(), "${field.nameCn}", 1, ${field.length?c});
+            </#if>
+<#--        </#if>-->
+        </#list>
 
 
         ResponseDto responseDto = new ResponseDto();
