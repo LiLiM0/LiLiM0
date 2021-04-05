@@ -97,3 +97,4 @@
 ## 生成器开发：增加生成controller层的代码
 ## 生成器开发：解决controller模板中的中文业务名称和模板名称问题
 ## 生成器开发：增加dto生成
+## 生成器开发：代码生成器和mybatis generator整合
