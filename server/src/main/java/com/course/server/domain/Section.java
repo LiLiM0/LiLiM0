@@ -19,7 +19,7 @@ public class Section {
 
     private Integer sort;
 
-    private Date creatAt;
+    private Date createdAt;
 
     private Date updatedAt;
 
@@ -87,12 +87,12 @@ public class Section {
         this.sort = sort;
     }
 
-    public Date getCreatAt() {
-        return creatAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatAt(Date creatAt) {
-        this.creatAt = creatAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
@@ -117,7 +117,7 @@ public class Section {
         sb.append(", time=").append(time);
         sb.append(", charge=").append(charge);
         sb.append(", sort=").append(sort);
-        sb.append(", creatAt=").append(creatAt);
+        sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append("]");
         return sb.toString();

@@ -10,7 +10,7 @@
     <result column="time" jdbcType="INTEGER" property="time" />
     <result column="charge" jdbcType="CHAR" property="charge" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="creat_at" jdbcType="TIMESTAMP" property="creatAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, course_id, chapter_id, video, time, charge, sort, creat_at, updated_at
+    id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.SectionExample" resultMap="BaseResultMap">
     select
@@ -107,11 +107,11 @@
   <insert id="insert" parameterType="com.course.server.domain.Section">
     insert into section (id, title, course_id, 
       chapter_id, video, time, 
-      charge, sort, creat_at, 
+      charge, sort, created_at, 
       updated_at)
     values (#{id,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{courseId,jdbcType=CHAR}, 
       #{chapterId,jdbcType=CHAR}, #{video,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, 
-      #{charge,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{creatAt,jdbcType=TIMESTAMP}, 
+      #{charge,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{updatedAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.Section">
@@ -141,8 +141,8 @@
       <if test="sort != null">
         sort,
       </if>
-      <if test="creatAt != null">
-        creat_at,
+      <if test="createdAt != null">
+        created_at,
       </if>
       <if test="updatedAt != null">
         updated_at,
@@ -173,8 +173,8 @@
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
       </if>
-      <if test="creatAt != null">
-        #{creatAt,jdbcType=TIMESTAMP},
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedAt != null">
         #{updatedAt,jdbcType=TIMESTAMP},
@@ -214,8 +214,8 @@
       <if test="record.sort != null">
         sort = #{record.sort,jdbcType=INTEGER},
       </if>
-      <if test="record.creatAt != null">
-        creat_at = #{record.creatAt,jdbcType=TIMESTAMP},
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedAt != null">
         updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
@@ -235,7 +235,7 @@
       time = #{record.time,jdbcType=INTEGER},
       charge = #{record.charge,jdbcType=CHAR},
       sort = #{record.sort,jdbcType=INTEGER},
-      creat_at = #{record.creatAt,jdbcType=TIMESTAMP},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -265,8 +265,8 @@
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
       </if>
-      <if test="creatAt != null">
-        creat_at = #{creatAt,jdbcType=TIMESTAMP},
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedAt != null">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
@@ -283,7 +283,7 @@
       time = #{time,jdbcType=INTEGER},
       charge = #{charge,jdbcType=CHAR},
       sort = #{sort,jdbcType=INTEGER},
-      creat_at = #{creatAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>

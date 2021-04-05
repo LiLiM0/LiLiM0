@@ -17,25 +17,23 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                    <th>id</th>
+                        <th>id</th>
 
-                    <th>标题</th>
+                        <th>标题</th>
 
-                    <th>课程</th>
+                        <th>课程</th>
 
-                    <th>大章</th>
+                        <th>大章</th>
 
-                    <th>视频</th>
+                        <th>视频</th>
 
-                    <th>时长</th>
+                        <th>时长</th>
 
-                    <th>收费</th>
+                        <th>收费</th>
 
-                    <th>顺序</th>
+                        <th>顺序</th>
 
-                    <th>创建时间</th>
 
-                    <th>修改时间</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -50,8 +48,6 @@
                     <td>{{section.time}}</td>
                     <td>{{section.charge}}</td>
                     <td>{{section.sort}}</td>
-                    <td>{{section.creatAt}}</td>
-                    <td>{{section.updatedAt}}</td>
 
                 <!--按钮-->
                 <td>
@@ -117,13 +113,6 @@
                     <div class="modal-body">
                         <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">id</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.id" class="form-control"
-                                               placeholder="名称">
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-2 control-label">标题</label>
                                     <div class="col-sm-10">
                                         <input v-model="section.title" class="form-control"
@@ -172,20 +161,6 @@
                                                placeholder="名称">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">创建时间</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.creatAt" class="form-control"
-                                               placeholder="名称">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">修改时间</label>
-                                    <div class="col-sm-10">
-                                        <input v-model="section.updatedAt" class="form-control"
-                                               placeholder="名称">
-                                    </div>
-                                </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -206,10 +181,7 @@
         components: {Pagination},
         data: function () {
             return {
-            section:
-            {
-            }
-        ,
+            section:{},
             sections: []
         }
         },

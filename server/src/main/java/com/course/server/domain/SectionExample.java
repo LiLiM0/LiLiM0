@@ -645,63 +645,63 @@ public class SectionExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtIsNull() {
-            addCriterion("creat_at is null");
+        public Criteria andCreatedAtIsNull() {
+            addCriterion("created_at is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtIsNotNull() {
-            addCriterion("creat_at is not null");
+        public Criteria andCreatedAtIsNotNull() {
+            addCriterion("created_at is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtEqualTo(Date value) {
-            addCriterion("creat_at =", value, "creatAt");
+        public Criteria andCreatedAtEqualTo(Date value) {
+            addCriterion("created_at =", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtNotEqualTo(Date value) {
-            addCriterion("creat_at <>", value, "creatAt");
+        public Criteria andCreatedAtNotEqualTo(Date value) {
+            addCriterion("created_at <>", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtGreaterThan(Date value) {
-            addCriterion("creat_at >", value, "creatAt");
+        public Criteria andCreatedAtGreaterThan(Date value) {
+            addCriterion("created_at >", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtGreaterThanOrEqualTo(Date value) {
-            addCriterion("creat_at >=", value, "creatAt");
+        public Criteria andCreatedAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("created_at >=", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtLessThan(Date value) {
-            addCriterion("creat_at <", value, "creatAt");
+        public Criteria andCreatedAtLessThan(Date value) {
+            addCriterion("created_at <", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtLessThanOrEqualTo(Date value) {
-            addCriterion("creat_at <=", value, "creatAt");
+        public Criteria andCreatedAtLessThanOrEqualTo(Date value) {
+            addCriterion("created_at <=", value, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtIn(List<Date> values) {
-            addCriterion("creat_at in", values, "creatAt");
+        public Criteria andCreatedAtIn(List<Date> values) {
+            addCriterion("created_at in", values, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtNotIn(List<Date> values) {
-            addCriterion("creat_at not in", values, "creatAt");
+        public Criteria andCreatedAtNotIn(List<Date> values) {
+            addCriterion("created_at not in", values, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtBetween(Date value1, Date value2) {
-            addCriterion("creat_at between", value1, value2, "creatAt");
+        public Criteria andCreatedAtBetween(Date value1, Date value2) {
+            addCriterion("created_at between", value1, value2, "createdAt");
             return (Criteria) this;
         }
 
-        public Criteria andCreatAtNotBetween(Date value1, Date value2) {
-            addCriterion("creat_at not between", value1, value2, "creatAt");
+        public Criteria andCreatedAtNotBetween(Date value1, Date value2) {
+            addCriterion("created_at not between", value1, value2, "createdAt");
             return (Criteria) this;
         }
 

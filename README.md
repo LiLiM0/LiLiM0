@@ -104,3 +104,4 @@
 # 4.6
 ## 生成器开发：前后端模板增加字段校验
 ## 将jquery.blockUI.min.js复制到本地，不使用cdn
+## 生成器开发：通用字段的处理，id、createdAt、updatedAt、sort
