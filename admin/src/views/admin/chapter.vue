@@ -1,5 +1,10 @@
 <template>
     <div>
+        <h4 class="lighter">
+            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+            <router-link to="/business/course" class="pink"> {{course.name}} </router-link>
+        </h4>
+
         <p>
             <button @click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
@@ -125,11 +130,18 @@
         data: function () {
             return {
                 chapter: {},
-                chapters: []
+                chapters: [],
+                course: {},
             }
         },
         mounted: function () {
             let _this = this;
+            _this.$refs.pagination.size = 5;
+            let course = SessionStorage.get(SESSION_KEY_COURSE) || {};
+            if (Tool.isEmpty(course)) {
+                _this.$router.push("/welcome");
+            }
+            _this.course = course;
             _this.list(1);
             // sidebar激活样式方法一
             // this.$parent.activeSidebar("business-chapter-sidebar");
