@@ -10,8 +10,8 @@ public class Field {
     private String comment; // 注释：课程|ID
     private Boolean nullAble; // 是否可为空
     private Integer length; // 字符串长度
-//    private Boolean enums; // 是否是枚举
-//    private String enumsConst; // 枚举常量 COURSE_LEVEL
+    private Boolean enums; // 是否是枚举
+    private String enumsConst; // 枚举常量 COURSE_LEVEL
 
     public String getName() {
         return name;
@@ -84,22 +84,22 @@ public class Field {
     public void setLength(Integer length) {
         this.length = length;
     }
-//
-//    public Boolean getEnums() {
-//        return enums;
-//    }
-//
-//    public void setEnums(Boolean enums) {
-//        this.enums = enums;
-//    }
-//
-//    public String getEnumsConst() {
-//        return enumsConst;
-//    }
-//
-//    public void setEnumsConst(String enumsConst) {
-//        this.enumsConst = enumsConst;
-//    }
+
+    public Boolean getEnums() {
+        return enums;
+    }
+
+    public void setEnums(Boolean enums) {
+        this.enums = enums;
+    }
+
+    public String getEnumsConst() {
+        return enumsConst;
+    }
+
+    public void setEnumsConst(String enumsConst) {
+        this.enumsConst = enumsConst;
+    }
 
     @Override
     public String toString() {
@@ -111,10 +111,10 @@ public class Field {
         sb.append(", type='").append(type).append('\'');
         sb.append(", javaType='").append(javaType).append('\'');
         sb.append(", comment='").append(comment).append('\'');
-//        sb.append(", nullAble=").append(nullAble);
-//        sb.append(", length=").append(length);
-//        sb.append(", enums=").append(enums);
-//        sb.append(", enumsConst='").append(enumsConst).append('\'');
+        sb.append(", nullAble=").append(nullAble);
+        sb.append(", length=").append(length);
+        sb.append(", enums=").append(enums);
+        sb.append(", enumsConst='").append(enumsConst).append('\'');
         sb.append('}');
         return sb.toString();
     }
