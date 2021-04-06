@@ -9,8 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EnumGenerator {
-//    static String path = "admin\\public\\static\\js\\enums.js";
-    static String path = "web\\public\\static\\js\\enums.js";
+    static String path = "admin\\public\\static\\js\\enums.js";
+//    static String path = "web\\public\\static\\js\\enums.js";
 
     public static void main(String[] args) {
         StringBuffer bufferObject = new StringBuffer();
@@ -19,9 +19,9 @@ public class EnumGenerator {
         try {
             toJson(SectionChargeEnum.class, bufferObject, bufferArray);
             toJson(YesNoEnum.class, bufferObject, bufferArray);
-//            toJson(CourseLevelEnum.class, bufferObject, bufferArray);
-//            toJson(CourseChargeEnum.class, bufferObject, bufferArray);
-//            toJson(CourseStatusEnum.class, bufferObject, bufferArray);
+            toJson(CourseLevelEnum.class, bufferObject, bufferArray);
+            toJson(CourseChargeEnum.class, bufferObject, bufferArray);
+            toJson(CourseStatusEnum.class, bufferObject, bufferArray);
 //            toJson(FileUseEnum.class, bufferObject, bufferArray);
 //            toJson(SmsUseEnum.class, bufferObject, bufferArray);
 //            toJson(SmsStatusEnum.class, bufferObject, bufferArray);
