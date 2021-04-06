@@ -109,3 +109,5 @@
 ## vue中增加过滤器
 ## 修改了一些无所谓的页面控制台报错
 ## 增加了枚举常量
+## 增加了枚举生成器EnumGenerator
+## optionKV过滤器从list改为object

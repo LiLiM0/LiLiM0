@@ -1,4 +1,7 @@
-// SECTION_CHARGE={CHARGE:{key:"C", value:"收费"},FREE:{key:"F", value:"免费"}};
+CHARGE = [{key: "C", value: "收费"}, {key: "F", value: "免费"}];
+
+
+SECTION_CHARGE={CHARGE:{key:"C", value:"收费"},FREE:{key:"F", value:"免费"}};
 // YES_NO={YES:{key:"1", value:"是"},NO:{key:"0", value:"否"}};
 // COURSE_LEVEL={ONE:{key:"1", value:"初级"},TWO:{key:"2", value:"中级"},THREE:{key:"3", value:"高级"}};
 // COURSE_CHARGE={CHARGE:{key:"C", value:"收费"},FREE:{key:"F", value:"免费"}};
@@ -16,4 +19,3 @@
 // SMS_USE_ARRAY=[{key:"R", value:"注册"},{key:"F", value:"忘记密码"}];
 // SMS_STATUS_ARRAY=[{key:"U", value:"已使用"},{key:"N", value:"未使用"}];
 
-CHARGE = [{key: "C", value: "收费"}, {key: "F", value: "免费"}]

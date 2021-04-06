@@ -17,6 +17,7 @@ let optionKV = (object, key) =>  {
         return result;
     }
 };
+
 /**
  * 数组过滤器 例如：{{CHARGE | optionKVArray(section.charge)}}
  * @param list 例如：[{key:"C", value:"收费"},{key:"F", value:"免费"}]
