@@ -122,7 +122,7 @@
     import Pagination from "../../components/pagination";
 
     export default {
-        name: "${domain}1",
+        name: "${module}-${domain}",
         components: {Pagination},
         data: function () {
             return {

@@ -111,3 +111,4 @@
 ## 增加了枚举常量
 ## 增加了枚举生成器EnumGenerator
 ## optionKV过滤器从list改为object
+## vue生成器为组件名称增加模块名作为前缀
