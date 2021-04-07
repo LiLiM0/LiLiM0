@@ -1,11 +1,15 @@
 <template>
     <div>
-        <h4 class="lighter">
-            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-            <router-link to="/business/course" class="pink"> {{course.name}} </router-link>
-        </h4>
+        <h3>
+            {{course.name}}
+        </h3>
 
         <p>
+            <router-link to="/business/course" class="btn btn-white btn-default btn-round">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                返回课程
+            </router-link>
+            &nbsp;
             <button @click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
                 新增
@@ -47,41 +51,6 @@
                         </button>
 
                     </div>
-                    <!--隐藏按钮-->
-                    <div class="hidden-md hidden-lg">
-                        <div class="inline pos-rel">
-                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    data-position="auto">
-                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </td>
             </tr>
             </tbody>
@@ -104,9 +73,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">课程ID</label>
+                                <label class="col-sm-2 control-label">课程</label>
                                 <div class="col-sm-10">
-                                    <input v-model="chapter.courseId" class="form-control" placeholder="课程ID">
+                                    <p class="form-control-static">{{course.name}}</p>
                                 </div>
                             </div>
                         </form>
@@ -137,7 +106,7 @@
         mounted: function () {
             let _this = this;
             _this.$refs.pagination.size = 5;
-            let course = SessionStorage.get(SESSION_KEY_COURSE) || {};
+            let course = SessionStorage.get("course") || {};
             if (Tool.isEmpty(course)) {
                 _this.$router.push("/welcome");
             }
@@ -159,12 +128,16 @@
                 _this.chapter = $.extend({}, chapter);
                 $("#form-modal").modal("show");
             },
+            /**
+             * 列表查询
+             */
             list(page) {
                 let _this = this;
                 Loading.show();
                 _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/chapter/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
+                    courseId: _this.course.id,
                 }).then((response) => {
                     console.log("查询大章列表结果：", response);
                     Loading.hide();
@@ -173,16 +146,18 @@
                     _this.$refs.pagination.render(page, resp.content.total);
                 })
             },
-
+            /**
+             * 点击【保存】
+             */
             save(page) {
                 let _this = this;
 
                 // 保存校验
                 if (!Validator.require(_this.chapter.name, "名称")
-                    ||!Validator.require(_this.chapter.courseId, "课程ID")
                     || !Validator.length(_this.chapter.courseId, "课程ID", 1, 8)) {
                     return;
                 }
+                _this.chapter.courseId = _this.course.id;
 
                 Loading.show();
 
