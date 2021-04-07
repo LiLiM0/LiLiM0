@@ -14,6 +14,7 @@ import com.mysql.jdbc.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class CourseService {
      /**
      * 保存，id有值时更新，无值时新增
      */
+     @Transactional
     public void save(CourseDto courseDto) {
         Course course = CopyUtil.copy(courseDto, Course.class);
         if (StringUtils.isEmptyOrWhitespaceOnly(courseDto.getId())) {
