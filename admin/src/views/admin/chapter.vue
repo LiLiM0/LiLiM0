@@ -1,8 +1,9 @@
 <template>
     <div>
-        <h3>
-            {{course.name}}
-        </h3>
+        <h4 class="lighter">
+            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+            <router-link to="/business/course" class="pink"> {{course.name}} </router-link>
+        </h4>
 
         <p>
             <router-link to="/business/course" class="btn btn-white btn-default btn-round">
@@ -14,7 +15,7 @@
                 <i class="ace-icon fa fa-edit"></i>
                 新增
             </button>
-            &nbsp;
+            &nbsp;&nbsp;
             <button @click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh red2"></i>
                 刷新
@@ -28,7 +29,6 @@
             <tr>
                 <th>ID</th>
                 <th>名称</th>
-                <th>课程ID</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -37,17 +37,20 @@
             <tr v-for="chapter in chapters">
                 <td>{{chapter.id}}</td>
                 <td>{{chapter.name}}</td>
-                <td>{{chapter.courseId}}</td>
                 <!--按钮-->
                 <td>
                     <div class="hidden-sm hidden-xs btn-group">
 
-                        <button @click="edit(chapter)" class="btn btn-xs btn-info">
-                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                        <button @click="toSection(chapter)" class="btn btn-xs btn-info">
+                           小节
                         </button>
-
+                        &nbsp;
+                        <button @click="edit(chapter)" class="btn btn-xs btn-info">
+                            编辑
+                        </button>
+                        &nbsp;
                         <button @click="del(chapter.id)" class="btn btn-xs btn-danger">
-                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                            删除
                         </button>
 
                     </div>
@@ -175,6 +178,10 @@
                     }
                 })
             },
+
+            /**
+             * 点击【删除】
+             */
             del(id) {
                 let _this = this;
                 Confirm.show(">_<", function () {
@@ -189,6 +196,15 @@
                         }
                     })
                 });
+            },
+
+            /**
+             * 点击【小节】
+             */
+            toSection(chapter) {
+                let _this = this;
+                SessionStorage.set("chapter", chapter);
+                _this.$router.push("/business/section");
             }
         }
     }

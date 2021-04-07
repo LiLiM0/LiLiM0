@@ -1,5 +1,12 @@
 <template>
     <div>
+        <h4 class="lighter">
+            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+            <router-link to="/business/course" class="pink"> {{course.name}} </router-link>：
+            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+            <router-link to="/business/chapter" class="pink"> {{chapter.name}} </router-link>
+        </h4>
+        <hr>
         <p>
             <button @click="add()" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-edit"></i>
@@ -21,10 +28,6 @@
 
                 <th>标题</th>
 
-                <th>课程</th>
-
-                <th>大章</th>
-
                 <th>视频</th>
 
                 <th>时长</th>
@@ -42,8 +45,6 @@
             <tr v-for="section in sections">
                 <td>{{section.id}}</td>
                 <td>{{section.title}}</td>
-                <td>{{section.courseId}}</td>
-                <td>{{section.chapterId}}</td>
                 <td>{{section.video}}</td>
                 <td>{{section.time}}</td>
                 <td>{{SECTION_CHARGE | optionKV(section.charge)}}</td>
@@ -61,41 +62,6 @@
                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
                         </button>
 
-                    </div>
-                    <!--隐藏按钮-->
-                    <div class="hidden-md hidden-lg">
-                        <div class="inline pos-rel">
-                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    data-position="auto">
-                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </td>
             </tr>
@@ -121,13 +87,13 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">课程</label>
                                 <div class="col-sm-10">
-                                    <input v-model="section.courseId" class="form-control">
+                                    <p class="form-control-static">{{course.name}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">大章</label>
                                 <div class="col-sm-10">
-                                    <input v-model="section.chapterId" class="form-control">
+                                    <p class="form-control-static">{{chapter.name}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -179,10 +145,20 @@
                 section: {},
                 sections: [],
                 SECTION_CHARGE: SECTION_CHARGE,
+                course:{},
+                chapter:{},
             }
         },
         mounted: function () {
             let _this = this;
+            _this.$refs.pagination.size = 5;
+            let course = SessionStorage.get("course") || {};
+            let chapter = SessionStorage.get("chapter") || {};
+            if (Tool.isEmpty(course) || Tool.isEmpty(chapter)) {
+                _this.$router.push("/welcome");
+            }
+            _this.course = course;
+            _this.chapter = chapter;
             _this.list(1);
             // sidebar激活样式方法一
             // this.$parent.activeSidebar("business-section-sidebar");
@@ -200,12 +176,17 @@
                 _this.section = $.extend({}, section);
                 $("#form-modal").modal("show");
             },
+            /**
+             * 列表查询
+             */
             list(page) {
                 let _this = this;
                 Loading.show();
                 _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/section/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
+                    courseId: _this.course.id,
+                    chapterId:_this.chapter.id,
                 }).then((response) => {
                     console.log("查询小节列表结果：", response);
                     Loading.hide();
@@ -226,6 +207,8 @@
                 ) {
                     return;
                 }
+                _this.section.courseId = _this.course.id;
+                _this.section.chapterId = _this.chapter.id;
 
                 Loading.show();
 
