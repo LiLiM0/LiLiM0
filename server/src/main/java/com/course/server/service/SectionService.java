@@ -12,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mysql.jdbc.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
@@ -50,22 +51,25 @@ public class SectionService {
         sectionPageDto.setList(sectionDtoList);
     }
 
-     /**
+    /**
      * 保存，id有值时更新，无值时新增
      */
-    public void save(SectionDto sectionDto) {
+    //多表操作，需要事务处理
+    @Transactional
+    public void save(SectionDto sectionDto){
         Section section = CopyUtil.copy(sectionDto, Section.class);
         if (StringUtils.isEmptyOrWhitespaceOnly(sectionDto.getId())) {
             this.insert(section);
         } else {
             this.update(section);
         }
+
         courseService.updateTime(sectionDto.getCourseId());
     }
 
     /**
-    * 新增
-    */
+     * 新增
+     */
     private void insert(Section section) {
         Date now = new Date();
         section.setCreatedAt(now);
@@ -76,16 +80,16 @@ public class SectionService {
     }
 
     /**
-    * 更新
-    */
+     * 更新
+     */
     private void update(Section section) {
         section.setUpdatedAt(new Date());
         sectionMapper.updateByPrimaryKey(section);
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     public void delete(String id) {
         sectionMapper.deleteByPrimaryKey(id);
     }

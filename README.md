@@ -122,3 +122,6 @@
 ## 小节管理保存和查询功能关联courseId，chapterId
 ## 保存节时，更新课程总时长
 ## 增加自定义mapper
+## 增加事务配置
+## 增加了时长格式化fliter formatSecond
+
