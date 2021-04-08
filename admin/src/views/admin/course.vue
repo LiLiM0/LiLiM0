@@ -46,19 +46,19 @@
                             <span class="badge badge-info">时长{{course.time| formatSecond}}</span>
                         </p>
                         <p>
-                            <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
+                            <button @click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 大章
                             </button>&nbsp;
-                            <!--              <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">-->
-                            <!--                内容-->
-                            <!--              </button>&nbsp;-->
+                            <button @click="editContent(course)" class="btn btn-white btn-xs btn-info btn-round">
+                                内容
+                            </button>&nbsp;
                             <!--              <button v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">-->
                             <!--                排序-->
                             <!--              </button>&nbsp;-->
-                            <button v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
+                            <button @click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 编辑
                             </button>&nbsp;
-                            <button v-on:click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-round">
+                            <button @click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-round">
                                 删除
                             </button>
                         </p>
@@ -154,6 +154,36 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <div id="course-content-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">内容编辑</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div>
+                                <div class="col-lg-12">
+                                    <div id="content"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
+                            <i class="ace-icon fa fa-times"></i>
+                            取消
+                        </button>
+                        <button type="button" class="btn btn-white btn-info btn-round" @click="saveContent()">
+                            <i class="ace-icon fa fa-plus blue"></i>
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -170,8 +200,8 @@
                 COURSE_LEVEL: COURSE_LEVEL,
                 COURSE_CHARGE: COURSE_CHARGE,
                 COURSE_STATUS: COURSE_STATUS,
-                categorys:[],
-                tree:{},
+                categorys: [],
+                tree: {},
             }
         },
         mounted: function () {
@@ -288,7 +318,7 @@
             allCategory() {
                 let _this = this;
                 Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/category/all').then((response)=>{
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/category/all').then((response) => {
                     Loading.hide();
                     let resp = response.data;
                     _this.categorys = resp.content;
@@ -325,7 +355,7 @@
             listCategory(courseId) {
                 let _this = this;
                 Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res)=>{
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res) => {
                     Loading.hide();
                     console.log("查找课程下所有分类结果：", res);
                     let response = res.data;
@@ -339,6 +369,61 @@
                     }
                 })
             },
+            /**
+             * 打开内容编辑器
+             */
+            editContent(course) {
+                let _this = this;
+                let id = course.id;
+                _this.course = course;
+                $('#content').summernote({
+                    focus: true,
+                    height: 300
+                });
+                //先清空历史文本
+                $("#content").summernote('code', '');
+                Loading.show();
+                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course/find-content/' + id).then((response) => {
+                    Loading.hide();
+                    let resp = response.data;
+
+                    if (resp.success) {
+                        $("#course-content-modal").modal({backdrop: 'static', keyboard: false});
+                        if (resp.content) {
+                            $("#content").summernote('code', resp.content.content);
+                            // // 定时自动保存
+                            // _this.saveContentInterval = setInterval(function() {
+                            //     _this.saveContent();
+                            // }, 5000);
+                        }
+                    } else {
+                        Toast.warning(resp.message);
+                    }
+                });
+            },
+            /**
+             * 保存内容
+             */
+            saveContent() {
+                let _this = this;
+                let content = $("#content").summernote("code");
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save-content', {
+                    id: _this.course.id,
+                    content: content
+                }).then((response) => {
+                    Loading.hide();
+                    let resp = response.data;
+                    if (resp.success) {
+                        Toast.success("内容保存成功");
+                        // let now = Tool.dateFormat("yyyy-MM-dd hh:mm:ss");
+                        // let now = Tool.dateFormat("mm:ss");
+                        // _this.saveContentLabel = "最后保存时间：" + now;
+                    } else {
+                        Toast.warning(resp.message);
+                    }
+                });
+            },
+
         }
     }
 </script>
