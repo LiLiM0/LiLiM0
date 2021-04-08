@@ -33,7 +33,7 @@
                         </div>
 
                         <h3 class="search-title">
-                            <a href="#" class="blue">{{course.name}}</a>
+                            <a href="#" class="blue" @click="toChapter(course)">{{course.name}}</a>
                         </h3>
 
                         <p>
@@ -52,9 +52,9 @@
                             <button @click="editContent(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 内容
                             </button>&nbsp;
-                            <!--              <button v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">-->
-                            <!--                排序-->
-                            <!--              </button>&nbsp;-->
+                            <button @click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
+                                排序
+                            </button>&nbsp;
                             <button @click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 编辑
                             </button>&nbsp;
@@ -83,6 +83,12 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <ul id="tree" class="ztree"></ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-10">
+                                    <input v-model="course.name" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -133,16 +139,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">报名数</label>
-                                <div class="col-sm-10">
-                                    <input v-model="course.enroll" class="form-control">
-                                </div>
-                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">报名数</label>-->
+<!--                                <div class="col-sm-10">-->
+<!--                                    <input v-model="course.enroll" class="form-control">-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">顺序</label>
                                 <div class="col-sm-10">
-                                    <input v-model="course.sort" class="form-control">
+                                    <input v-model="course.sort" class="form-control" disabled>
                                 </div>
                             </div>
                         </form>
@@ -154,6 +160,49 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
+        <div id="course-sort-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">排序</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    当前排序
+                                </label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" v-model="sort.oldSort" name="oldSort" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    新排序
+                                </label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" v-model="sort.newSort" name="newSort">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
+                            <i class="ace-icon fa fa-times"></i>
+                            取消
+                        </button>
+                        <button type="button" class="btn btn-white btn-info btn-round" @click="updateSort()">
+                            <i class="ace-icon fa fa-plus blue"></i>
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="course-content-modal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -189,6 +238,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -208,6 +258,11 @@
                 categorys: [],
                 tree: {},
                 saveContentLabel: "",
+                sort: {
+                    id: "",
+                    oldSort: 0,
+                    newSort: 0,
+                }
             }
         },
         mounted: function () {
@@ -225,7 +280,9 @@
              */
             add() {
                 let _this = this;
-                _this.course = {};
+                _this.course = {
+                    sort: _this.$refs.pagination.total + 1
+                };
                 _this.tree.checkAllNodes(false);
                 $("#form-modal").modal("show");
             },
@@ -408,9 +465,10 @@
                             $('#course-content-modal').on('hiden.bs.modal', function (e) {
                                 clearInterval(saveContentInterval);
                             })
-                        } else {
-                            Toast.warning(resp.message);
                         }
+                        // else {
+                        //     Toast.warning(resp.message);
+                        // }
                     }
                 });
             },
@@ -436,6 +494,40 @@
                     }
                 });
             },
+
+            openSortModal(course) {
+                let _this = this;
+                _this.sort = {
+                    id: course.id,
+                    oldSort: course.sort,
+                    newSort: course.sort
+                };
+                $("#course-sort-modal").modal("show");
+            },
+
+            /**
+             * 排序
+             */
+            updateSort() {
+                let _this = this;
+                if (_this.sort.newSort === _this.sort.oldSort) {
+                    Toast.warning("排序没有变化");
+                    return;
+                }
+                Loading.show();
+                _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/course/sort", _this.sort).then((res) => {
+                    let response = res.data;
+
+                    if (response.success) {
+                        Toast.success("更新排序成功");
+                        $("#course-sort-modal").modal("hide");
+                        _this.list(1);
+                    } else {
+                        Toast.error("更新排序失败");
+                    }
+                });
+            },
+
 
         }
     }
