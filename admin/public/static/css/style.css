@@ -1,4 +1,4 @@
-/*表格内容上下居中显示*/
+/*使所有表格中的文字上下居中*/
 .table td {
   vertical-align: middle !important;
 }
