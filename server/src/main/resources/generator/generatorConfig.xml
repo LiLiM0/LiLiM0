@@ -42,10 +42,10 @@
 
         <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
         <!--        <table tableName="section" domainObjectName="Section"/>-->
-        <!--        <table tableName="course" domainObjectName="Course"/>-->
+                <table tableName="course" domainObjectName="Course"/>
         <!--        <table tableName="course_content" domainObjectName="CourseContent"/>-->
         <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
-                <table tableName="teacher" domainObjectName="Teacher"/>
+<!--                <table tableName="teacher" domainObjectName="Teacher"/>-->
         <!--        <table tableName="file" domainObjectName="File"/>-->
         <!--        <table tableName="user" domainObjectName="User"/>-->
         <!--        <table tableName="resource" domainObjectName="Resource"/>-->

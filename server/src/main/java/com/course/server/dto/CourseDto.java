@@ -83,7 +83,7 @@ public class CourseDto {
 
     private String content;
 
-//    private TeacherDto teacher;
+    private TeacherDto teacher;
 
     private String teacherId;
 
@@ -231,13 +231,13 @@ public class CourseDto {
         this.content = content;
     }
 
-//    public TeacherDto getTeacher() {
-//        return teacher;
-//    }
-//
-//    public void setTeacher(TeacherDto teacher) {
-//        this.teacher = teacher;
-//    }
+    public TeacherDto getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(TeacherDto teacher) {
+        this.teacher = teacher;
+    }
 
     @Override
     public String toString() {
@@ -259,7 +259,7 @@ public class CourseDto {
         sb.append(", chapters=").append(chapters);
         sb.append(", sections=").append(sections);
         sb.append(", content='略'");
-//        sb.append(", teacher=").append(teacher);
+        sb.append(", teacher=").append(teacher);
         sb.append(", teacherId='").append(teacherId).append('\'');
         sb.append('}');
         return sb.toString();

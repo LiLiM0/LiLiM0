@@ -21,6 +21,8 @@ create table course (
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
 values ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 1, 'C', 'P', 100, 0, now(), now());
 
+alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id');
+
 drop table if exists `chapter`;
 create table `chapter`(
 `id` char(8) not null comment 'ID',
@@ -151,6 +153,11 @@ create table `teacher` (
                            `intro` varchar(500) comment '简介',
                            primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='讲师';
+
+insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000100', '赵老师', 'nn1', '','高级项目经理','','');
+insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000101', '钱老师', 'nn2', '','全栈工程师','','');
+insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000102', '孙老师', 'nn3', '','高级架构师','','');
+insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000103', '李老师', 'nn4', '','高级项目经理','','');
 
 # 测试
 drop table if exists `test`;
