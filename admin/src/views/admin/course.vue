@@ -35,6 +35,18 @@
                         <h3 class="search-title">
                             <a href="#" class="blue" @click="toChapter(course)">{{course.name}}</a>
                         </h3>
+                        <!--取filter过滤出老师的id与课程老师id相等的老师id-->
+                        <div v-for="teacher in teachers.filter(t=>{return t.id===course.teacherId})"
+                             class="profile-activity clearfix">
+                            <div>
+                                <img v-show="!teacher.image" class="pull-left"
+                                     src="/ace/assets/images/avatars/avatar5.png">
+                                <img v-show="teacher.image" class="pull-left" v-bind:src="teacher.image">
+                                <a class="user" href="#"> {{teacher.name}} </a>
+                                <br>
+                                {{teacher.position}}
+                            </div>
+                        </div>
 
                         <p>
                             <span class="blue bolder bigger-150">{{course.price}}&nbsp;<i class="fa fa-rmb"></i></span>&nbsp;
@@ -43,7 +55,7 @@
                         <p>
                             <span class="badge badge-info">{{course.id}}</span>
                             <span class="badge badge-info">排序：{{course.sort}}</span>
-                            <span class="badge badge-info">时长{{course.time| formatSecond}}</span>
+                            <span class="badge badge-info">{{course.time| formatSecond}}</span>
                         </p>
                         <p>
                             <button @click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
@@ -147,12 +159,12 @@
                                     </select>
                                 </div>
                             </div>
-<!--                            <div class="form-group">-->
-<!--                                <label class="col-sm-2 control-label">报名数</label>-->
-<!--                                <div class="col-sm-10">-->
-<!--                                    <input v-model="course.enroll" class="form-control">-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                            <div class="form-group">-->
+                            <!--                                <label class="col-sm-2 control-label">报名数</label>-->
+                            <!--                                <div class="col-sm-10">-->
+                            <!--                                    <input v-model="course.enroll" class="form-control">-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">顺序</label>
                                 <div class="col-sm-10">
@@ -271,7 +283,7 @@
                     oldSort: 0,
                     newSort: 0,
                 },
-                teachers:[],
+                teachers: [],
             }
         },
         mounted: function () {
@@ -557,9 +569,9 @@
         font-size: 20px;
     }
 
-    /*@media (max-width: 1199px) {*/
-    /*    .caption h3 {*/
-    /*        font-size: 16px;*/
-    /*    }*/
-    /*}*/
+    @media (max-width: 1199px) {
+        .caption h3 {
+            font-size: 16px;
+        }
+    }
 </style>
