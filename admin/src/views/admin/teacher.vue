@@ -245,42 +245,6 @@
                 let image = resp.content.path;
                 _this.teacher.image = image;
             }
-            // uploadImage() {
-            //     let _this = this;
-            //     let formData = new window.FormData();
-            //     let file = _this.$refs.file.files[0];
-            //
-            //     let suffixs = ["jpg","jpeg","png"];//支持格式
-            //     let fileName = file.name;//文件名
-            //     let suffix = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length).toLowerCase();//后缀
-            //     let validateSuffix = false;//验证flag
-            //     for (let i = 0; i < suffixs.length; i++) {
-            //         if(suffixs[i].toLowerCase()===suffix){
-            //             validateSuffix = true;
-            //             break;
-            //         }
-            //     }
-            //     if (!validateSuffix){
-            //         Toast.warning("文件格式不正确！只支持上传："+suffixs.join(","));
-            //         return;
-            //     }
-            //     //key:"file"必须和后端controller参数名一致
-            //     formData.append('file', document.querySelector('#file-upload-input').files[0]);
-            //     Loading.show();
-            //     _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload',
-            //         formData).then((response) => {
-            //         Loading.hide();
-            //         let resp = response.data;
-            //         let image = resp.content;
-            //         console.log("头像地址：", image);
-            //         _this.teacher.image = image;
-            //     });
-            // },
-            //
-            // selectImage() {
-            //     $("#file-upload-input").trigger("click");
-            // }
-
         }
     }
 </script>

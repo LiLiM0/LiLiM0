@@ -2,9 +2,10 @@
     <div>
         <h4 class="lighter">
             <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-            <router-link to="/business/course" class="pink"> {{course.name}} </router-link>：
+            <router-link to="/business/course" class="pink"> {{course.name}}</router-link>
+            ：
             <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-            <router-link to="/business/chapter" class="pink"> {{chapter.name}} </router-link>
+            <router-link to="/business/chapter" class="pink"> {{chapter.name}}</router-link>
         </h4>
         <hr>
         <p>
@@ -99,7 +100,16 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">视频</label>
                                 <div class="col-sm-10">
-                                    <input v-model="section.video" class="form-control">
+                                    <file v-bind:id="'video-upload'"
+                                          v-bind:suffixs="['mp4']"
+                                          v-bind:text="'上传视频'"
+                                          v-bind:use="FILE_USE.COURSE.key"
+                                          v-bind:after-upload="afterUpload"></file>
+                                    <div v-show="course.image" class="row">
+                                        <div class="col-md-9">
+                                            <video v-bind:src="section.video" controls="controls"></video>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -136,17 +146,19 @@
 
 <script>
     import Pagination from "../../components/pagination";
+    import File from "../../components/file";
 
     export default {
         name: "business-section",
-        components: {Pagination},
+        components: {Pagination, File},
         data: function () {
             return {
                 section: {},
                 sections: [],
                 SECTION_CHARGE: SECTION_CHARGE,
-                course:{},
-                chapter:{},
+                course: {},
+                chapter: {},
+                FILE_USE: FILE_USE,
             }
         },
         mounted: function () {
@@ -186,7 +198,7 @@
                     page: page,
                     size: _this.$refs.pagination.size,
                     courseId: _this.course.id,
-                    chapterId:_this.chapter.id,
+                    chapterId: _this.chapter.id,
                 }).then((response) => {
                     console.log("查询小节列表结果：", response);
                     Loading.hide();
@@ -240,7 +252,23 @@
                         }
                     })
                 });
-            }
+            },
+            /**
+             * 回调方法
+             */
+            afterUpload(resp) {
+                let _this = this;
+                let video = resp.content.path;
+                _this.section.video = video;
+            },
         }
     }
 </script>
+
+<style scoped>
+    video{
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+    }
+</style>
