@@ -107,7 +107,7 @@
                                           v-bind:after-upload="afterUpload"></file>
                                     <div v-show="course.image" class="row">
                                         <div class="col-md-9">
-                                            <video v-bind:src="section.video" controls="controls"></video>
+                                            <video v-bind:src="section.video" id="video" controls="controls"></video>
                                         </div>
                                     </div>
                                 </div>
@@ -260,13 +260,22 @@
                 let _this = this;
                 let video = resp.content.path;
                 _this.section.video = video;
+                _this.getTime();
             },
+            /**
+             * 获取视频时长
+             */
+            getTime() {
+                let _this = this;
+                let ele = document.getElementById("video");
+                _this.section.time = parseInt(ele.duration, 10);
+            }
         }
     }
 </script>
 
 <style scoped>
-    video{
+    video {
         width: 100%;
         height: auto;
         margin-top: 10px;
