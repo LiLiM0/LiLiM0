@@ -79,7 +79,8 @@ public class UploadController {
 
 
         ResponseDto responseDto = new ResponseDto();
-        responseDto.setContent(FILE_DOMAIN + path);
+        fileDto.setPath(FILE_DOMAIN + path);
+        responseDto.setContent(fileDto);
         return responseDto;
     }
 }
