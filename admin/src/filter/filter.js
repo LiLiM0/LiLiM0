@@ -93,5 +93,5 @@ let formatFileSize = (value) => {
 export default {
     optionKV,
     formatSecond,
-    // formatFileSize
+    formatFileSize
 }

@@ -12,24 +12,24 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
             <tr>
-                                        <th>id</th>
-                        <th>相对路径</th>
-                        <th>文件名</th>
-                        <th>后缀</th>
-                        <th>大小</th>
-                        <th>用途</th>
+                <th>id</th>
+                <th>相对路径</th>
+                <th>文件名</th>
+                <th>后缀</th>
+                <th>大小</th>
+                <th>用途</th>
 
             </tr>
             </thead>
 
             <tbody>
             <tr v-for="file in files">
-                            <td>{{file.id}}</td>
-                            <td>{{file.path}}</td>
-                            <td>{{file.name}}</td>
-                            <td>{{file.suffix}}</td>
-                            <td>{{file.size}}</td>
-                            <td>{{FILE_USE | optionKV(file.use)}}</td>
+                <td>{{file.id}}</td>
+                <td>{{file.path}}</td>
+                <td>{{file.name}}</td>
+                <td>{{file.suffix}}</td>
+                <td>{{file.size| formatFileSize}}</td>
+                <td>{{FILE_USE | optionKV(file.use)}}</td>
             </tr>
             </tbody>
         </table>
@@ -40,17 +40,18 @@
 
 <script>
     import Pagination from "../../components/pagination";
+
     export default {
         components: {Pagination},
         name: "business-file",
-        data: function() {
+        data: function () {
             return {
-            file: {},
-            files: [],
-            FILE_USE: FILE_USE,
-        }
+                file: {},
+                files: [],
+                FILE_USE: FILE_USE,
+            }
         },
-        mounted: function() {
+        mounted: function () {
             let _this = this;
             _this.$refs.pagination.size = 5;
             _this.list(1);
@@ -68,7 +69,7 @@
                 _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/file/list', {
                     page: page,
                     size: _this.$refs.pagination.size,
-                }).then((response)=>{
+                }).then((response) => {
                     Loading.hide();
                     let resp = response.data;
                     _this.files = resp.content.list;
