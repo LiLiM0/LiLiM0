@@ -35,6 +35,7 @@ public class UploadController {
         LOG.info("图片路径："+dest.getAbsolutePath());
 
         ResponseDto responseDto = new ResponseDto();
+        responseDto.setContent( "http://127.0.0.1:9003/file/f/teacher/" + key + "-" + fileName);
         return responseDto;
     }
 }
