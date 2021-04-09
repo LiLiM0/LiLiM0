@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/courseContentFile")
+@RequestMapping("/admin/course-content-file")
 public class CourseContentFileController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CourseContentFileController.class);

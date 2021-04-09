@@ -241,13 +241,13 @@
                         <h4 class="modal-title">内容编辑</h4>
                     </div>
 
-                    <file v-bind:input-id="'image-upload'"
-                          v-bind:suffixs="['jpg','jpeg','png','mp4']"
-                          v-bind:text="'上传文件1'"
+                    <file v-bind:input-id="'content-file-upload'"
+                          v-bind:text="'上传文件'"
+                          v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4']"
                           v-bind:use="FILE_USE.COURSE.key"
                           v-bind:after-upload="afterUploadContentFile"></file>
                     <br>
-                    <table id="simple-table" class="table  table-bordered table-hover">
+                    <table id="file-table" class="table  table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>名称</th>
@@ -258,13 +258,12 @@
                         </thead>
 
                         <tbody>
-                        <tr v-for="(f,i) in file" v-bind:key="f.id">
+                        <tr v-for="(f, i) in files" v-bind:key="f.id">
                             <td>{{f.name}}</td>
                             <td>{{f.url}}</td>
-                            <td>{{f.size|formatFileSize}}</td>
-                            <!--按钮-->
+                            <td>{{f.size | formatFileSize}}</td>
                             <td>
-                                <button @click="delFile(f)" class="btn btn-xs btn-warning">
+                                <button v-on:click="delFile(f)" class="btn btn-white btn-xs btn-warning btn-round">
                                     <i class="ace-icon fa fa-times red2"></i>
                                     删除
                                 </button>
