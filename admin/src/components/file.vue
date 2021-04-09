@@ -4,8 +4,8 @@
             <i class="ace-icon fa fa-upload"></i>
             {{text}}
         </button>
-        <!--测试用，用于查看上传文件名 不用时hiden-->
-        <input  class="hiden" type="file" ref="file" v-on:change="uploadFile()" v-bind:id="inputId+'-input'">
+        <!--测试用，用于查看上传文件名 不用时hidden-->
+        <input  class="hidden" type="file" ref="file" v-on:change="uploadFile()" v-bind:id="inputId+'-input'">
     </div>
 </template>
 
