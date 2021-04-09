@@ -61,7 +61,7 @@
                             <button @click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 大章
                             </button>&nbsp;
-                            <button @click="editContent(course)" class="btn btn-white btn-xs btn-info btn-round">
+                            <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
                                 内容
                             </button>&nbsp;
                             <button @click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
@@ -232,73 +232,7 @@
             </div>
         </div>
 
-        <div id="course-content-modal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">内容编辑</h4>
-                    </div>
 
-                    <file v-bind:input-id="'content-file-upload'"
-                          v-bind:text="'上传文件'"
-                          v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4']"
-                          v-bind:use="FILE_USE.COURSE.key"
-                          v-bind:after-upload="afterUploadContentFile"></file>
-                    <br>
-                    <table id="file-table" class="table  table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>名称</th>
-                            <th>地址</th>
-                            <th>大小</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr v-for="(f, i) in files" v-bind:key="f.id">
-                            <td>{{f.name}}</td>
-                            <td>{{f.url}}</td>
-                            <td>{{f.size | formatFileSize}}</td>
-                            <td>
-                                <button v-on:click="delFile(f)" class="btn btn-white btn-xs btn-warning btn-round">
-                                    <i class="ace-icon fa fa-times red2"></i>
-                                    删除
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    {{saveContentLabel}}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <div id="content"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
-                            <i class="ace-icon fa fa-times"></i>
-                            取消
-                        </button>
-                        <button type="button" class="btn btn-white btn-info btn-round" @click="saveContent()">
-                            <i class="ace-icon fa fa-plus blue"></i>
-                            保存
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </template>
@@ -327,7 +261,6 @@
                     newSort: 0,
                 },
                 teachers: [],
-                files: [],
             }
         },
         mounted: function () {
@@ -443,6 +376,14 @@
                 SessionStorage.set(SESSION_KEY_COURSE, course);
                 _this.$router.push("/business/chapter");
             },
+            /**
+             * 点击【内容】
+             */
+            toContent(course) {
+                let _this = this;
+                SessionStorage.set(SESSION_KEY_COURSE, course);
+                _this.$router.push("/business/content");
+            },
 
             allCategory() {
                 let _this = this;
@@ -498,69 +439,6 @@
                     }
                 })
             },
-            /**
-             * 打开内容编辑器
-             */
-            editContent(course) {
-                let _this = this;
-                let id = course.id;
-                _this.course = course;
-                $('#content').summernote({
-                    focus: true,
-                    height: 300
-                });
-
-                //先清空历史文本
-                $("#content").summernote('code', '');
-                _this.saveContentLabel = "";
-
-                //加载内容文件文本
-                _this.listContentFiles();
-
-                Loading.show();
-                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course/find-content/' + id).then((response) => {
-                    Loading.hide();
-                    let resp = response.data;
-
-                    if (resp.success) {
-                        $("#course-content-modal").modal({backdrop: 'static', keyboard: false});
-                        if (resp.content) {
-                            $("#content").summernote('code', resp.content.content);
-                            // 定时自动保存
-                            let saveContentInterval = setInterval(function () {
-                                _this.saveContent();
-                            }, 20000);
-                            //关闭内容框时，清空自动保存任务
-                            $('#course-content-modal').on('hiden.bs.modal', function (e) {
-                                clearInterval(saveContentInterval);
-                            })
-                        }
-                    }
-                });
-            },
-            /**
-             * 保存内容
-             */
-            saveContent() {
-                let _this = this;
-                let content = $("#content").summernote("code");
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save-content', {
-                    id: _this.course.id,
-                    content: content
-                }).then((response) => {
-                    Loading.hide();
-                    let resp = response.data;
-                    if (resp.success) {
-                        // Toast.success("内容保存成功");
-                        let now = Tool.dateFormat("yyyy-MM-dd hh:mm:ss");
-                        // let now = Tool.dateFormat("mm:ss");
-                        _this.saveContentLabel = "最后保存时间：" + now;
-                    } else {
-                        Toast.warning(resp.message);
-                    }
-                });
-            },
-
             openSortModal(course) {
                 let _this = this;
                 _this.sort = {
