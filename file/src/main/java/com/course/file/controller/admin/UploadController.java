@@ -54,7 +54,7 @@ public class UploadController {
         LOG.info("图片路径：" + dest.getAbsolutePath());
 
         ResponseDto responseDto = new ResponseDto();
-        responseDto.setContent(FILE_DOMAIN + "/f/teacher/" + key + "-" + fileName);
+        responseDto.setContent(FILE_DOMAIN + "teacher/" + key + "-" + fileName);
         return responseDto;
     }
 }
