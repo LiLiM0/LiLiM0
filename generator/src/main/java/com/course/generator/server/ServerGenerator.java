@@ -2,14 +2,7 @@ package com.course.generator.server;
 
 import com.course.generator.util.DbUtil;
 import com.course.generator.util.Field;
-
-import com.course.generator.util.DbUtil;
-import com.course.generator.util.Field;
 import com.course.generator.util.FreemarkerUtil;
-import freemarker.template.TemplateException;
-
-import java.io.IOException;
-import java.util.*;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -18,7 +11,7 @@ import java.io.File;
 import java.util.*;
 
 public class ServerGenerator {
-    static String MODULE = "business";
+    static String MODULE = "file";
     static String toDtoPath = "server\\src\\main\\java\\com\\course\\server\\dto\\";
     static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
     static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
