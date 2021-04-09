@@ -86,11 +86,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">头像</label>
                                 <div class="col-sm-10">
-                                    <button type="button" @click="selectImage()" class="btn btn-white btn-default btn-round">
+                                    <button type="button" @click="selectImage()"
+                                            class="btn btn-white btn-default btn-round">
                                         <i class="ace-icon fa fa-upload"></i>
                                         上传头像
                                     </button>
-                                    <input class="hidden" type="file" v-on:change="uploadImage()"
+                                    <input class="hidden" type="file" ref="file" v-on:change="uploadImage()"
                                            id="file-upload-input">
                                     <div v-show="teacher.image" class="row">
                                         <div class="col-md-4">
@@ -240,6 +241,22 @@
             uploadImage() {
                 let _this = this;
                 let formData = new window.FormData();
+                let file = _this.$refs.file.files[0];
+
+                let suffixs = ["jpg","jpeg","png"];//支持格式
+                let fileName = file.name;//文件名
+                let suffix = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length).toLowerCase();//后缀
+                let validateSuffix = false;//验证flag
+                for (let i = 0; i < suffixs.length; i++) {
+                    if(suffixs[i].toLowerCase()===suffix){
+                        validateSuffix = true;
+                        break;
+                    }
+                }
+                if (!validateSuffix){
+                    Toast.warning("文件格式不正确！只支持上传："+suffixs.join(","));
+                    return;
+                }
                 //key:"file"必须和后端controller参数名一致
                 formData.append('file', document.querySelector('#file-upload-input').files[0]);
                 Loading.show();
