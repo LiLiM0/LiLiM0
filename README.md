@@ -169,5 +169,6 @@
 ## 修复course，section，teacher页面中关于文件组件中inputId的赋值
 ## 修复file组件中selectFile，id的值改为变量
 ## 文件上传功能开发，增加课程内容文件管理，用于富文本框中插入图片或视频
+## 配置项目到另一台电脑
 
 
