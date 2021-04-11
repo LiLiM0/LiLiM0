@@ -60,7 +60,7 @@ export default {
 
       //文件分片
       let shardSize = 20 * 1024 * 1024;//以20mb为一个分片
-      let shardIndex = 0;//分片索引
+      let shardIndex = 1;//分片索引
       let shart = shardIndex * shardSize;//当前分片的起始位置
       let end = Math.min(file.size,shart + shardSize)//当前分片结束位置1，取文件大小和累计大小中小的那个数
       let fileshard = file.slice(shart,end);
