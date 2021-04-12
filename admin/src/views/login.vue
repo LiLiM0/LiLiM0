@@ -106,7 +106,7 @@ export default {
         } else {
           Toast.warning(resp.message)
         }
-      })
+      });
 
     },
 

@@ -296,13 +296,12 @@
                             </a>
 
                             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-cog"></i>
-                                        系统设置
-                                    </a>
-                                </li>
-
+<!--                                <li>-->
+<!--                                    <a href="#">-->
+<!--                                        <i class="ace-icon fa fa-cog"></i>-->
+<!--                                        系统设置-->
+<!--                                    </a>-->
+<!--                                </li>-->
                                 <li>
                                     <a href="profile.html">
                                         <i class="ace-icon fa fa-user"></i>
@@ -313,8 +312,8 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-power-off"></i>
+                                    <a href="#" @click="logout()">
+                                        <i class="ace-icon fa fa-power-off" ></i>
                                         退出登录
                                     </a>
                                 </li>
@@ -361,7 +360,7 @@
                     <li class="" id="welcome-sidebar">
                         <router-link to="/welcome">
                             <i class="menu-icon fa fa-tachometer"></i>
-                            <span class="menu-text"> 欢迎---{{loginUser.name}}</span>
+                            <span class="menu-text"> 欢迎：{{loginUser.name}}</span>
                         </router-link>
 
                         <b class="arrow"></b>
@@ -569,6 +568,21 @@
                     parentLi.addClass("open active");
                 }
             },
+          logout() {
+            let _this = this;
+
+            Loading.show();
+            _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/user/logout').then((response) => {
+              Loading.hide();
+              let resp = response.data;
+              if (resp.success) {
+                Tool.setLoginUser(null);
+                this.$router.push("/login")
+              } else {
+                Toast.warning(resp.message)
+              }
+            });
+          },
 
         }
     }
