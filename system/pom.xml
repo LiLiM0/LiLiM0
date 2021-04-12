@@ -40,6 +40,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
+
         <!--用于引用server的依赖-->
         <dependency>
             <groupId>com.course</groupId>
