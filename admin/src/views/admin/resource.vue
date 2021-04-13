@@ -18,6 +18,7 @@
               </button>
             </div>
             <div class="col-md-6">
+              <ul id="tree" class="ztree"></ul>
             </div>
           </div>
 
@@ -71,12 +72,12 @@
             resource: {},
             resources: [],
             resourceStr: "",
+            tree: {},
           }
         },
         mounted: function () {
           let _this = this;
-          _this.$refs.pagination.size = 5;
-          _this.list(1);
+          _this.list();
           // sidebar激活样式方法一
           // this.$parent.activeSidebar("system-resource-sidebar");
 
@@ -85,18 +86,16 @@
           /**
            * 列表查询
            */
-          list(page) {
+          list() {
             let _this = this;
             Loading.show();
-            _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/resource/list', {
-              page: page,
-              size: _this.$refs.pagination.size,
-            }).then((response) => {
+            _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/resource/load-tree', {
+            }).then((res) => {
               Loading.hide();
-              let resp = response.data;
-              _this.resources = resp.content.list;
-              _this.$refs.pagination.render(page, resp.content.total);
-
+              let response = res.data;
+              _this.resources = response.content;
+              // 初始化树
+              _this.initTree();
             })
           },
 
@@ -144,7 +143,27 @@
                 }
               })
             });
-          }
+          },
+
+          /**
+           * 初始资源树
+           */
+          initTree() {
+            let _this = this;
+            let setting = {
+              data: {
+                simpleData: {
+                  idKey: "id",
+                  pIdKey: "parent",
+                  rootPId: "",
+                  // enable: true
+                }
+              }
+            };
+
+            _this.zTree = $.fn.zTree.init($("#tree"), setting, _this.resources);
+            _this.zTree.expandAll(true);
+          },
         }
       }
       </script>
