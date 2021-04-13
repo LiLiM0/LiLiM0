@@ -12,6 +12,7 @@ import File from "./views/admin/file.vue"
 import Content from "./views/admin/content.vue"
 import User from "./views/admin/user.vue"
 import Resource from "./views/admin/resource.vue"
+import Role from "./views/admin/role.vue"
 
 
 Vue.use(Router);
@@ -31,53 +32,57 @@ export default new Router({
         component: Login
     }, {
         path: "/",
-        name:"admin",
+        name: "admin",
         component: Admin,
         //admin下面的子路由,子路由path路径不加
         //登录拦截
         meta: {
             loginRequire: true
         },
-        children:[{
+        children: [{
             path: "welcome",
-            name:"welcome",
+            name: "welcome",
             component: Welcome
         }, {
             path: "business/category",
-            name:"business/category",
+            name: "business/category",
             component: Category
-        },{
+        }, {
             path: "business/course",
-            name:"business/course",
+            name: "business/course",
             component: Course
         }, {
             path: "business/chapter",
-            name:"business/chapter",
+            name: "business/chapter",
             component: Chapter
         }, {
             path: "business/section",
-            name:"business/section",
+            name: "business/section",
             component: Section
         }, {
             path: "business/content",
-            name:"business/content",
+            name: "business/content",
             component: Content
         }, {
             path: "business/teacher",
-            name:"business/teacher",
+            name: "business/teacher",
             component: Teacher
         }, {
             path: "file/file",
-            name:"file/file",
+            name: "file/file",
             component: File
         }, {
             path: "system/user",
-            name:"system/user",
+            name: "system/user",
             component: User
-        },{
+        }, {
             path: "system/resource",
-            name:"system/resource",
+            name: "system/resource",
             component: Resource
+        }, {
+            path: "system/role",
+            name: "system/role",
+            component: Role
         }]
     }]
 })
