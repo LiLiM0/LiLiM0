@@ -25,39 +25,6 @@
           <hr>
 
           <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
-
-          <table id="simple-table" class="table  table-bordered table-hover">
-            <thead>
-            <tr>
-              <th>id</th>
-              <th>名称</th>
-              <th>页面</th>
-              <th>请求</th>
-              <th>父id</th>
-              <th>操作</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr v-for="resource in resources">
-              <td>{{ resource.id }}</td>
-              <td>{{ resource.name }}</td>
-              <td>{{ resource.page }}</td>
-              <td>{{ resource.request }}</td>
-              <td>{{ resource.parent }}</td>
-              <td>
-                <div class="hidden-sm hidden-xs btn-group">
-                  <button @click="edit(resource)" class="btn btn-xs btn-info">
-                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                  </button>
-                  <button @click="del(resource.id)" class="btn btn-xs btn-danger">
-                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
         </div>
       </template>
 
