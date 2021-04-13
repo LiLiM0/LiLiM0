@@ -1,5 +1,6 @@
 package com.course.server.dto;
 
+
 public class LoginUserDto {
 
     /**
@@ -17,11 +18,10 @@ public class LoginUserDto {
      */
     private String name;
 
-
-
     /**
-     * 所有资源中的请求，用于后端接口拦截
+     * 登录凭证
      */
+    private String token;
 
     public String getId() {
         return id;
@@ -47,18 +47,22 @@ public class LoginUserDto {
         this.name = name;
     }
 
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", loginName=").append(loginName);
-        sb.append(", name=").append(name);
-        sb.append("]");
+        final StringBuffer sb = new StringBuffer("LoginUserDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", loginName='").append(loginName).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", token='").append(token).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 
