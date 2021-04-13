@@ -187,9 +187,12 @@
 ## ！！！用户管理与登录：集成redis，图形验证码的存储冲session改为redis（不过是用的别人的服务器，要是挂了要撤回这个提交）
 ## 验证码太糊了，老是输错，改为高清验证码
 ## ！！！用户管理与登录：生成登录token并存储到redis中；退出登录时删除token
-## 解决的上传视频时长获取值为nan的bug（参考：https://www.cnblogs.com/wangqiao170/p/9359760.html）
+## 解决的上传视频时长获取值为NaN的bug（参考：https://www.cnblogs.com/wangqiao170/p/9359760.html）
 ## 用户管理与登录：基于vue路由的登录拦截
 ## 用户管理与登录：在请求header中统一增加token
+## 用户管理与登录：在gateway中增加登录拦截器
+## 用户管理与登录：gateway实现控台登录拦截功能
+
 
 
 
