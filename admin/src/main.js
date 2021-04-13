@@ -14,7 +14,14 @@ axios.defaults.withCredentials = true;
  * axios拦截器
  */
 axios.interceptors.request.use(function (config) {
-    console.log("请求：", config);
+    console.log("请求：", config)
+    //加上token，防止只访问请求 get：http://127.0.0.1:9000/business/admin/course/find-content/00000001 post:postman等第三方工具
+    let token = Tool.getLoginUser().token;
+    if (Tool.isNotEmpty(token)) {
+        config.headers.token = token;
+        console.log("请求headers增加token:", token);
+    }
+
     return config;
 }, error => {});
 axios.interceptors.response.use(function (response) {
