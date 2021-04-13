@@ -32,7 +32,11 @@ export default new Router({
         path: "/",
         name:"admin",
         component: Admin,
-        //admin下面的子路由,子路由path路径不加/
+        //admin下面的子路由,子路由path路径不加
+        //登录拦截
+        meta: {
+            loginRequire: true
+        },
         children:[{
             path: "welcome",
             name:"welcome",

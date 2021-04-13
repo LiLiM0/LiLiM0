@@ -188,6 +188,7 @@
 ## 验证码太糊了，老是输错，改为高清验证码
 ## ！！！用户管理与登录：生成登录token并存储到redis中；退出登录时删除token
 ## 解决的上传视频时长获取值为nan的bug（参考：https://www.cnblogs.com/wangqiao170/p/9359760.html）
+## 用户管理与登录：基于vue路由的登录拦截
 
 
 
