@@ -26,8 +26,8 @@
                 default: ""
             },
             afterUpload: {
-                type: Function,
-                default: null
+              type: Function,
+              default: null
             },
         },
         data: function () {
