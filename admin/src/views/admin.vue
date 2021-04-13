@@ -385,6 +385,14 @@
 
                         <b class="arrow"></b>
                       </li>
+                      <li class="" id="system-resource-sidebar">
+                        <router-link to="/system/resource">
+                          <i class="menu-icon fa fa-caret-right"></i>
+                          资源管理
+                        </router-link>
+
+                        <b class="arrow"></b>
+                      </li>
 
                     </ul>
                   </li>
