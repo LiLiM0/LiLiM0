@@ -95,7 +95,7 @@
                   <i class="ace-icon fa fa-times"></i>
                   关闭
                 </button>
-                <button type="button" class="btn btn-white btn-info btn-round" v-on:click="saveResource()">
+                <button type="button" class="btn btn-white btn-info btn-round" @click="saveResource()">
                   <i class="ace-icon fa fa-plus blue"></i>
                   保存
                 </button>
@@ -235,6 +235,7 @@
             _this.resources = response.content;
             // 初始化树
             _this.initTree();
+
           })
         },
 
@@ -259,6 +260,33 @@
 
           _this.zTree = $.fn.zTree.init($("#tree"), setting, _this.resources);
           _this.zTree.expandAll(true);
+        },
+
+        /**
+         * 资源模态框点击【保存】
+         */
+        saveResource() {
+          let _this = this;
+          let resources = _this.zTree.getCheckedNodes();
+          console.log("勾选的资源：", resources);
+
+          // 保存时，只需要保存资源id，所以使用id数组进行参数传递
+          let resourceIds = [];
+          for (let i = 0; i < resources.length; i++) {
+            resourceIds.push(resources[i].id);
+          }
+
+          _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/role/save-resource', {
+            id: _this.role.id,
+            resourceIds: resourceIds
+          }).then((response)=>{
+            let resp = response.data;
+            if (resp.success) {
+              Toast.success("保存成功!");
+            } else {
+              Toast.warning(resp.message);
+            }
+          });
         },
       }
     }
