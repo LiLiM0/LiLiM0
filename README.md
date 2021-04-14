@@ -220,6 +220,12 @@
 ## 网站首页开发：导航条美化：菜单名称修改；增加container布局；样式改为dark
 ## 网站首页开发：集成fontawesome图标
 ## 网站首页开发：底部文案修改，大屏文案修改
+# 4.15
+## 网站首页开发：增加【新上好课】后端接口 测试地址：http://127.0.0.1:9002/business/web/course/list-new
+## 网站首页开发：首页显示新上好课真实数据 
+## 网站首页开发：bootstrap4图片自适应：使用img-fluid
+## 网站首页开发：进到web目录下，安装axios：npm install axios --save
+## 优化all.sql表 初始user表，账号admin/密码admin（数据中显示加密后的，所以初始化也改为加密的）
 
 
 

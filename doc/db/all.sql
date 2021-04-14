@@ -185,7 +185,7 @@ create table `file` (
   unique key `path_unique` (`path`)
 ) engine=innodb default charset=utf8mb4 comment='文件';
 
--- 用户
+-- 后台用户
 drop table if exists `user`;
 create table `user` (
                         `id` char(8) not null default '' comment 'id',
@@ -197,7 +197,7 @@ create table `user` (
 ) engine=innodb default charset=utf8mb4 comment='用户';
 
 # 初始test/test
-insert into `user` (id, login_name, name, password) values ('10000000', 'test', '测试', 'e70e2222a9d67c4f2eae107533359aa4');
+insert into `user` (id, login_name, name, password) values ('10000000', 'admin', '测试', '1f15d405949c4ed3c2279aa6d48b1e9a');
 
 
 -- 资源
