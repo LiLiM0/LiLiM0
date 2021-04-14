@@ -20,6 +20,8 @@ public class RoleDto {
      */
     private String desc;
 
+    private List<String> userIds;
+
     private List<String> resourceIds;
 
     public String getId() {
@@ -54,6 +56,14 @@ public class RoleDto {
         this.resourceIds = resourceIds;
     }
 
+    public List<String> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(List<String> userIds) {
+        this.userIds = userIds;
+    }
+
 
 
     @Override
@@ -63,6 +73,7 @@ public class RoleDto {
         sb.append(", name='").append(name).append('\'');
         sb.append(", desc='").append(desc).append('\'');
         sb.append(", resourceIds=").append(resourceIds);
+        sb.append(", userIds=").append(userIds);
         sb.append('}');
         return sb.toString();
     }
