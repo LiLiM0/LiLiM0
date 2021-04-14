@@ -540,9 +540,9 @@
             // _this.loginUser = SessionStorage.get("USER");
             _this.loginUser = Tool.getLoginUser();
 
-            // if (!_this.hasResourceRouter(_this.$route.name)) {
-            //     _this.$router.push("/login");
-            // }
+            if (!_this.hasResourceRouter(_this.$route.name)) {
+                _this.$router.push("/login");
+            }
         },
         // vue内置的watch，用来监听Vue实例上的数据变动。$route也是一个变量。
         watch: {
@@ -552,10 +552,10 @@
                     console.log("---->页面跳转：", val, oldVal);
                     let _this = this;
 
-                    // if (!_this.hasResourceRouter(val.name)) {
-                    //     _this.$router.push("/login");
-                    //     return;
-                    // }
+                    if (!_this.hasResourceRouter(val.name)) {
+                        _this.$router.push("/login");
+                        return;
+                    }
 
                     _this.$nextTick(function () {  //页面加载完成后执行
                         _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
@@ -564,6 +564,24 @@
             }
         },
         methods: {
+
+          /**
+           * 查找是否有权限
+           * @param router
+           */
+          hasResourceRouter(router) {
+            let _this = this;
+            let resources = Tool.getLoginUser().resources;
+            if (Tool.isEmpty(resources)) {
+              return false;
+            }
+            for (let i = 0; i < resources.length; i++) {
+              if (router === resources[i].page) {
+                return true;
+              }
+            }
+            return false;
+          },
             /**
              * 查找是否有权限
              * @param id
