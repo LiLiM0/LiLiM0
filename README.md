@@ -215,7 +215,8 @@
 ## 前台网站开发：增加bootstrap-4.4.1的js.css
 ## 前台网站开发：集成album模板
 ## 前台网站开发：将顶部和底部提取成the-header和the-footer组件
-## 前台网站开发：
+## 前台网站开发：增加路由配置router.js,增加网站首页index.vue
+## 前台网站开发：导航条改为bootstrap导航条组件 文档：https://v4.bootcss.com/docs/components/navbar/
 
 
 
