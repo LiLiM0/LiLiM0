@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      <button @click="add()" class="btn btn-white btn-default btn-round">
+      <button v-show="hasResource('010101')" @click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
         新增
       </button>
@@ -33,13 +33,13 @@
         <td>{{ user.password }}</td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
-            <button @click="editPassword(user)" class="btn btn-xs btn-info">
+            <button v-show="hasResource('010103')" @click="editPassword(user)" class="btn btn-xs btn-info">
               <i class="ace-icon fa fa-key bigger-120"></i>
             </button>
-            <button @click="edit(user)" class="btn btn-xs btn-info">
+            <button v-show="hasResource('010101')" @click="edit(user)" class="btn btn-xs btn-info">
               <i class="ace-icon fa fa-pencil bigger-120"></i>
             </button>
-            <button @click="del(user.id)" class="btn btn-xs btn-danger">
+            <button v-show="hasResource('010102')" @click="del(user.id)" class="btn btn-xs btn-danger">
               <i class="ace-icon fa fa-trash-o bigger-120"></i>
             </button>
           </div>
@@ -144,6 +144,15 @@ export default {
 
   },
   methods: {
+
+    /**
+     * 查找是否有权限
+     * @param id
+     */
+    hasResource(id) {
+      return Tool.hasResource(id);
+    },
+
     /**
      * 点击【新增】
      */
