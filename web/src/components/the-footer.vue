@@ -2,10 +2,10 @@
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
-        <a href="#">Back to top</a>
+        <a href="#">回到顶部</a>
       </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="https://v4.bootcss.com/">Visit the homepage</a> or read our <a href="/docs/getting-started/introduction/">getting started guide</a>.</p>
+      <p>欢迎使用在线视频学习系统&nbsp;&nbsp;广告位招租</p>
+      <p>项目仓库地址：<a href="https://github.com/LiLiM0/LiLiM0/tree/bysj">https://github.com/LiLiM0/LiLiM0/tree/bysj</a></p>
     </div>
   </footer>
 </template>

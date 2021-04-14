@@ -3,11 +3,12 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1>Album example1</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1>在线视频课程平台</h1>
+        <p class="lead text-muted m-3">
+          知识付费时代刚刚起步，在这个领域有很多的发展机会。整个课程以实战为基础，手把手从零开始，一步一步搭建一个完整的企业级开发架构。不讲废话，只讲干货。
+        </p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">点击进入所有课程</a>
         </p>
       </div>
     </section>

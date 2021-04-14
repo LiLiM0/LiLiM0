@@ -217,6 +217,9 @@
 ## 前台网站开发：将顶部和底部提取成the-header和the-footer组件
 ## 前台网站开发：增加路由配置router.js,增加网站首页index.vue
 ## 前台网站开发：导航条改为bootstrap导航条组件 文档：https://v4.bootcss.com/docs/components/navbar/
+## 网站首页开发：导航条美化：菜单名称修改；增加container布局；样式改为dark
+## 网站首页开发：集成fontawesome图标
+## 网站首页开发：底部文案修改，大屏文案修改
 
 
 
