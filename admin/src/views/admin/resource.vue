@@ -21,10 +21,6 @@
               <ul id="tree" class="ztree"></ul>
             </div>
           </div>
-
-          <hr>
-
-          <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
         </div>
       </template>
 

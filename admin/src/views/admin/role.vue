@@ -31,7 +31,7 @@
             <td>{{ role.desc }}</td>
             <td>
               <div class="hidden-sm hidden-xs btn-group">
-                <button v-on:click="editResource(role)" class="btn btn-xs btn-info">
+                <button @click="editResource(role)" class="btn btn-xs btn-info">
                   <i class="ace-icon fa fa-list bigger-120"></i>
                 </button>
                 <button @click="edit(role)" class="btn btn-xs btn-info">
@@ -235,7 +235,7 @@
             _this.resources = response.content;
             // 初始化树
             _this.initTree();
-
+            _this.listRoleResource();
           })
         },
 
@@ -285,6 +285,24 @@
               Toast.success("保存成功!");
             } else {
               Toast.warning(resp.message);
+            }
+          });
+        },
+
+        /**
+         * 加载角色资源关联记录
+         */
+        listRoleResource() {
+          let _this = this;
+          _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/role/list-resource/' + _this.role.id).then((response)=>{
+            let resp = response.data;
+            let resources = resp.content;
+
+            // 勾选查询到的资源：先把树的所有节点清空勾选，再勾选查询到的节点
+            _this.zTree.checkAllNodes(false);
+            for (let i = 0; i < resources.length; i++) {
+              let node = _this.zTree.getNodeByParam("id", resources[i]);
+              _this.zTree.checkNode(node, true);
             }
           });
         },
