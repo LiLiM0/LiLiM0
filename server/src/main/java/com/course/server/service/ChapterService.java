@@ -53,7 +53,9 @@ public class ChapterService {
         List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList,ChapterDto.class);
         chapterPageDto.setList(chapterDtoList);
     }
-
+    /**
+     * 保存，id有值时更新，无值时新增
+     */
     public void save(ChapterDto chapterDto) {
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
        if(ObjectUtils.isEmpty(chapterDto.getId())){
@@ -62,17 +64,34 @@ public class ChapterService {
             this.update(chapter);
        }
     }
-
+    /**
+     * 新增
+     */
     private void insert(Chapter chapter) {
         chapter.setId(UuidUtil.getShortUuid());
         chapterMapper.insert(chapter);
     }
-
+    /**
+     * 更新
+     */
     private void update(Chapter chapter) {
         chapterMapper.updateByPrimaryKey(chapter);
     }
-
+    /**
+     * 删除
+     */
     public void delete(String id) {
         chapterMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 查询某一课程下的所有章
+     */
+    public List<ChapterDto> listByCourse(String courseId) {
+        ChapterExample example = new ChapterExample();
+        example.createCriteria().andCourseIdEqualTo(courseId);
+        List<Chapter> chapterList = chapterMapper.selectByExample(example);
+        List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList, ChapterDto.class);
+        return chapterDtoList;
     }
 }
