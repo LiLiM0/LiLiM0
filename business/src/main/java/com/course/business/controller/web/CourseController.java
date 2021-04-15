@@ -36,4 +36,18 @@ public class CourseController {
         responseDto.setContent(courseDtoList);
         return responseDto;
     }
+
+    /**
+     * 列表查询，查询最热门的3门已发布的课程
+     */
+    @GetMapping("/list-hot")
+    public ResponseDto listHot() {
+        PageDto pageDto = new PageDto();
+        pageDto.setPage(1);
+        pageDto.setSize(3);
+        ResponseDto responseDto = new ResponseDto();
+        List<CourseDto> courseDtoList = courseService.listHot(pageDto);
+        responseDto.setContent(courseDtoList);
+        return responseDto;
+    }
 }

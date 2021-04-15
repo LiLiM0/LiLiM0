@@ -65,6 +65,18 @@ public class CourseService {
         return CopyUtil.copyList(courseList, CourseDto.class);
     }
 
+    /**
+     * 好课列表查询，只查询已发布的，按报名人数正序
+     */
+    public List<CourseDto> listHot(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        CourseExample courseExample = new CourseExample();
+        courseExample.createCriteria().andStatusEqualTo(CourseStatusEnum.PUBLISH.getCode());
+        courseExample.setOrderByClause("enroll desc");
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        return CopyUtil.copyList(courseList, CourseDto.class);
+    }
+
      /**
      * 保存，id有值时更新，无值时新增
      */
