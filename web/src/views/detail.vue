@@ -179,9 +179,13 @@ export default {
     play(section){
       let _this = this;
       //extend 用于避免对页面中变量的临时修改
-      _this.section = $.extend({}, section);
-      $("#form-modal").modal("show");
-      $(".video-hide video#sp").trigger("pause");
+      _this.section = $.extend({}, section)
+      if (section.charge === _this.SECTION_CHARGE.CHARGE.key ) {
+        Toast.warning("请先登录");
+      } else {
+        $("#form-modal").modal("show");
+      }
+
     },
 
     stopVideo(){
