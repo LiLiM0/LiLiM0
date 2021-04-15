@@ -1,11 +1,6 @@
 <template>
     <div>
         <p>
-            <button @click="add()" class="btn btn-white btn-default btn-round">
-                <i class="ace-icon fa fa-edit"></i>
-                新增
-            </button>
-            &nbsp;
             <button @click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-refresh"></i>
                 刷新
@@ -23,7 +18,6 @@
                         <th>昵称</th>
                         <th>头像url</th>
                         <th>注册时间</th>
-                <th>操作</th>
             </tr>
             </thead>
 
@@ -35,68 +29,10 @@
                             <td>{{member.name}}</td>
                             <td>{{member.photo}}</td>
                             <td>{{member.registerTime}}</td>
-                <td>
-                    <div class="hidden-sm hidden-xs btn-group">
-                        <button @click="edit(member)" class="btn btn-xs btn-info">
-                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                        </button>
-                        <button @click="del(member.id)" class="btn btn-xs btn-danger">
-                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                        </button>
-                    </div>
-                </td>
             </tr>
             </tbody>
         </table>
 
-        <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">表单</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">手机号</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="member.mobile" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">密码</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="member.password" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">昵称</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="member.name" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">头像url</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="member.photo" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">注册时间</label>
-                                            <div class="col-sm-10">
-                                                <input v-model="member.registerTime" class="form-control">
-                                            </div>
-                                        </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button @click="save()" type="button" class="btn btn-primary">保存</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
     </div>
 </template>
 
@@ -120,23 +56,6 @@
 
         },
         methods: {
-            /**
-             * 点击【新增】
-             */
-            add() {
-                let _this = this;
-                _this.member = {};
-                $("#form-modal").modal("show");
-            },
-
-            /**
-             * 点击【编辑】
-             */
-            edit(member) {
-                let _this = this;
-                _this.member = $.extend({}, member);
-                $("#form-modal").modal("show");
-            },
 
             /**
              * 列表查询
@@ -156,53 +75,6 @@
                 })
             },
 
-            /**
-             * 点击【保存】
-             */
-            save() {
-                let _this = this;
-
-                // 保存校验
-                if (1 != 1
-                    || !Validator.length(_this.member.mobile, "手机号", 1, 11)
-                    || !Validator.require(_this.member.password, "密码")
-                    || !Validator.length(_this.member.name, "昵称", 1, 50)
-                    || !Validator.length(_this.member.photo, "头像url", 1, 200)
-                ) {
-                    return;
-                }
-
-                Loading.show();
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/member/save', _this.member).then((response)=>{
-                    Loading.hide();
-                    let resp = response.data;
-                    if (resp.success) {
-                        $("#form-modal").modal("hide");
-                        _this.list(1);
-                        Toast.success("保存成功！");
-                    } else {
-                        Toast.warning(resp.message)
-                    }
-                })
-            },
-
-            /**
-             * 点击【删除】
-             */
-            del(id) {
-                let _this = this;
-                Confirm.show("删除会员后不可恢复，确认删除？", function () {
-                    Loading.show();
-                    _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/member/delete/' + id).then((response)=>{
-                        Loading.hide();
-                        let resp = response.data;
-                        if (resp.success) {
-                            _this.list(1);
-                            Toast.success("删除成功！");
-                        }
-                    })
-                });
-            }
         }
     }
 </script>
