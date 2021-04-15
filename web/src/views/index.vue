@@ -18,48 +18,14 @@
         <div class="title1">最新上线</div>
         <div class="row">
           <div v-for="n in news" class="col-md-4">
-            <div class="card mb-4 shadow-sm course">
-              <img class="img-fluid" v-bind:src="n.image">
-              <div class="card-body">
-                <h4 class="">{{ n.name }}</h4>
-                <p class="card-text">{{ n.summary }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">课程详情</button>
-                  </div>
-                  <div class="text-muted">
-                    <span class="badge badge-info"><i class="fa fa-yen"
-                                                      aria-hidden="true"></i>&nbsp;{{ n.price }}</span>&nbsp;
-                    <span class="badge badge-info"><i class="fa fa-user"
-                                                      aria-hidden="true"></i>&nbsp;{{ n.enroll }}</span>&nbsp;
-                  </div>
-                </div>
-              </div>
-            </div>
+            <the-course v-bind:course="n"></the-course>
           </div>
         </div>
         <hr>
         <div class="title2">好课推荐</div>
         <div class="row">
-          <div v-for="n in hots" class="col-md-4">
-            <div class="card mb-4 shadow-sm course">
-              <img class="img-fluid" v-bind:src="n.image">
-              <div class="card-body">
-                <h4 class="">{{ n.name }}</h4>
-                <p class="card-text">{{ n.summary }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">课程详情</button>
-                  </div>
-                  <div class="text-muted">
-                      <span class="badge badge-info"><i class="fa fa-yen"
-                                                        aria-hidden="true"></i>&nbsp;{{ n.price }}</span>&nbsp;
-                    <span class="badge badge-info"><i class="fa fa-user"
-                                                      aria-hidden="true"></i>&nbsp;{{ n.enroll }}</span>&nbsp;
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div v-for="h in hots" class="col-md-4">
+            <the-course v-bind:course="h"></the-course>
           </div>
 
           <div class="col-md-4">
@@ -219,8 +185,11 @@
 
 <script>
 
+import TheCourse from "../components/the-course";
+
 export default {
   name: 'index',
+  components: {TheCourse},
   data: function () {
     return {
       news: [],
@@ -267,3 +236,36 @@ export default {
   }
 }
 </script>
+
+<style>
+/*title 好课推荐和最新上线的标题样式 参考：https://blog.csdn.net/weixin_43226231/article/details/105321178*/
+.title1 {
+  background: #2B6695;
+  border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  color: #FFFFFF;
+  font-family: "微软雅黑", "宋体", "黑体", Arial;
+  font-size: 18px;
+  font-weight: bold;
+  height: 2.5rem;
+  line-height: 25px;
+  margin: 18px 0 !important;
+  padding: 8px 0 5px 5px;
+  text-shadow: 2px 2px 3px #222222;
+}
+
+.title2 {
+  background: #2B6695;
+  border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  color: #FFFFFF;
+  font-family: "微软雅黑", "宋体", "黑体", Arial;
+  font-size: 18px;
+  font-weight: bold;
+  height: 2.5rem;
+  line-height: 25px;
+  margin: 18px 0 !important;
+  padding: 8px 0 5px 5px;
+  text-shadow: 2px 2px 3px #222222;
+}
+</style>
