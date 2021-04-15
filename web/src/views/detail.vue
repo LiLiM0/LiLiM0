@@ -56,9 +56,9 @@
                     <table class="table table-striped">
                       <tr v-for="(s, j) in chapter.sections" class="chapter-section-tr">
                         <td class="col-sm-8 col-xs-12">
-                          <div class="section-title">
+                          <div v-on:click="play(s)" class="section-title">
                             <i class="fa fa-video-camera d-none d-sm-inline"></i>&nbsp;&nbsp;
-                            <span class="d-none d-sm-inline">第{{j+1}}节&nbsp;&nbsp;</span>
+                            <span  v-bind:after-upload="afterUpload" data-toggle="modal" data-target=".bs-example-modal-lg" class="d-none d-sm-inline">第{{j+1}}节&nbsp;&nbsp;</span>
                             {{s.title}}
                             <span v-show="s.charge !== SECTION_CHARGE.CHARGE.key" class="badge badge-primary hidden-xs">免费</span>
                           </div>
@@ -91,6 +91,22 @@
       </div>
     </div>
 
+    <div id="form-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button @click="stopVideo()" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">{{ section.title }}</h4>
+            <div v-show="course.image" class="row">
+              <div>
+                <video v-bind:src="section.video" id="video" controls="controls" preload="auto" width="796px"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -104,6 +120,7 @@ export default {
       course: {},
       teacher: {},
       chapters: [],
+      section: {},
       sections: [],
       COURSE_LEVEL: COURSE_LEVEL,
       SECTION_CHARGE: SECTION_CHARGE
@@ -134,6 +151,7 @@ export default {
               c.sections.push(s);
             }
           }
+          Tool.sortAsc(c.sections, "sort");
         }
       })
     },
@@ -148,6 +166,27 @@ export default {
       // 在v-for里写v-show，只修改属性不起作用，需要$set
       _this.$set(_this.chapters, i, chapter);
     },
+
+    /**
+     * 回调方法
+     */
+    afterUpload(resp) {
+      let _this = this;
+      let video = resp.content.path;
+      _this.section.video = video;
+    },
+
+    play(section){
+      let _this = this;
+      //extend 用于避免对页面中变量的临时修改
+      _this.section = $.extend({}, section);
+      $("#form-modal").modal("show");
+      $(".video-hide video#sp").trigger("pause");
+    },
+
+    stopVideo(){
+      video.pause();
+    }
   }
 }
 </script>

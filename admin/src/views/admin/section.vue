@@ -37,7 +37,6 @@
 
                 <th>顺序</th>
 
-
                 <th>操作</th>
             </tr>
             </thead>
@@ -259,8 +258,8 @@
             afterUpload(resp) {
                 let _this = this;
                 let video = resp.content.path;
-                _this.section.video = video;
                 _this.getTime();
+                _this.section.video = video;
             },
 
             // /**
@@ -280,7 +279,7 @@
               let _this = this;
               setTimeout(()=>{
                 _this.section.time = parseInt(document.getElementById("video").duration,10)
-              },800)
+              },600)
           },
 
         }
