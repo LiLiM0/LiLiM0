@@ -1,6 +1,8 @@
 package com.course.generator.enums;
 
 import com.course.server.enums.*;
+import com.course.server.enums.SmsStatusEnum;
+import com.course.server.enums.SmsUseEnum;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -23,8 +25,8 @@ public class EnumGenerator {
             toJson(CourseChargeEnum.class, bufferObject, bufferArray);
             toJson(CourseStatusEnum.class, bufferObject, bufferArray);
             toJson(FileUseEnum.class, bufferObject, bufferArray);
-//            toJson(SmsUseEnum.class, bufferObject, bufferArray);
-//            toJson(SmsStatusEnum.class, bufferObject, bufferArray);
+            toJson(SmsUseEnum.class, bufferObject, bufferArray);
+            toJson(SmsStatusEnum.class, bufferObject, bufferArray);
 
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);
@@ -114,7 +116,7 @@ public class EnumGenerator {
     }
 
     /**
-     * 驼峰转下划线，第一位是下划线 递归
+     * 驼峰转下划线，第一位是下划线
      * 如：SectionChargeEnum 变成 _section_charge_enum
      * @param str
      * @return
