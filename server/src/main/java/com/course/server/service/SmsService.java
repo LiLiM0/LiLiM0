@@ -2,8 +2,8 @@ package com.course.server.service;
 
 import com.course.server.domain.Sms;
 import com.course.server.domain.SmsExample;
-import com.course.server.dto.SmsDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.SmsDto;
 import com.course.server.enums.SmsStatusEnum;
 import com.course.server.exception.BusinessException;
 import com.course.server.exception.BusinessExceptionCode;
@@ -12,15 +12,19 @@ import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mysql.jdbc.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SmsService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SmsService.class);
 
     @Resource
     private SmsMapper smsMapper;
@@ -38,12 +42,12 @@ public class SmsService {
         pageDto.setList(smsDtoList);
     }
 
-     /**
+    /**
      * 保存，id有值时更新，无值时新增
      */
     public void save(SmsDto smsDto) {
         Sms sms = CopyUtil.copy(smsDto, Sms.class);
-        if (StringUtils.isEmptyOrWhitespaceOnly(smsDto.getId())) {
+        if (StringUtils.isEmpty(smsDto.getId())) {
             this.insert(sms);
         } else {
             this.update(sms);
@@ -51,25 +55,24 @@ public class SmsService {
     }
 
     /**
-    * 新增
-    */
+     * 新增
+     */
     private void insert(Sms sms) {
-                Date now = new Date();
-
+        Date now = new Date();
         sms.setId(UuidUtil.getShortUuid());
         smsMapper.insert(sms);
     }
 
     /**
-    * 更新
-    */
+     * 更新
+     */
     private void update(Sms sms) {
         smsMapper.updateByPrimaryKey(sms);
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     public void delete(String id) {
         smsMapper.deleteByPrimaryKey(id);
     }
@@ -92,6 +95,7 @@ public class SmsService {
         if (smsList == null || smsList.size() == 0) {
             saveAndSend(smsDto);
         } else {
+            LOG.warn("短信请求过于频繁, {}", smsDto.getMobile());
             throw new BusinessException(BusinessExceptionCode.MOBILE_CODE_TOO_FREQUENT);
         }
     }
@@ -109,5 +113,31 @@ public class SmsService {
         this.save(smsDto);
 
         // TODO 调第三方短信接口发送短信
+    }
+
+    /**
+     * 验证码5分钟内有效，且操作类型要一致
+     * @param smsDto
+     */
+    public void validCode(SmsDto smsDto) {
+        SmsExample example = new SmsExample();
+        SmsExample.Criteria criteria = example.createCriteria();
+        // 查找5分钟内同手机号同操作发送记录
+        criteria.andMobileEqualTo(smsDto.getMobile()).andUseEqualTo(smsDto.getUse()).andAtGreaterThan(new Date(new Date().getTime() - 1 * 60 * 1000));
+        List<Sms> smsList = smsMapper.selectByExample(example);
+
+        if (smsList != null && smsList.size() > 0) {
+            Sms smsDb = smsList.get(0);
+            if (!smsDb.getCode().equals(smsDto.getCode())) {
+                LOG.warn("短信验证码不正确");
+                throw new BusinessException(BusinessExceptionCode.MOBILE_CODE_ERROR);
+            } else {
+                smsDto.setStatus(SmsStatusEnum.USED.getCode());
+                smsMapper.updateByPrimaryKey(smsDb);
+            }
+        } else {
+            LOG.warn("短信验证码不存在或已过期，请重新发送短信");
+            throw new BusinessException(BusinessExceptionCode.MOBILE_CODE_EXPIRED);
+        }
     }
 }

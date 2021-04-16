@@ -1,7 +1,8 @@
 package com.course.server.dto;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class MemberDto {
 
@@ -31,6 +32,12 @@ public class MemberDto {
     private String photo;
 
     /**
+     * 注册时间
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date registerTime;
+
+    /**
      * 图片验证码
      */
     private String imageCode;
@@ -40,12 +47,10 @@ public class MemberDto {
      */
     private String imageCodeToken;
 
-
     /**
-     * 注册时间
+     * 短信验证码
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date registerTime;
+    private String smsCode;
 
     public String getId() {
         return id;
@@ -111,6 +116,13 @@ public class MemberDto {
         this.imageCodeToken = imageCodeToken;
     }
 
+    public String getSmsCode() {
+        return smsCode;
+    }
+
+    public void setSmsCode(String smsCode) {
+        this.smsCode = smsCode;
+    }
 
     @Override
     public String toString() {
@@ -123,8 +135,8 @@ public class MemberDto {
         sb.append(", registerTime=").append(registerTime);
         sb.append(", imageCode='").append(imageCode).append('\'');
         sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
+        sb.append(", smsCode='").append(smsCode).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 }
