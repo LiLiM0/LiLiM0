@@ -31,6 +31,17 @@ public class MemberDto {
     private String photo;
 
     /**
+     * 图片验证码
+     */
+    private String imageCode;
+
+    /**
+     * 图片验证码token
+     */
+    private String imageCodeToken;
+
+
+    /**
      * 注册时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -84,20 +95,35 @@ public class MemberDto {
         this.registerTime = registerTime;
     }
 
+    public String getImageCode() {
+        return imageCode;
+    }
+
+    public void setImageCode(String imageCode) {
+        this.imageCode = imageCode;
+    }
+
+    public String getImageCodeToken() {
+        return imageCodeToken;
+    }
+
+    public void setImageCodeToken(String imageCodeToken) {
+        this.imageCodeToken = imageCodeToken;
+    }
+
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", mobile=").append(mobile);
-        sb.append(", password=").append(password);
-        sb.append(", name=").append(name);
-        sb.append(", photo=").append(photo);
+        final StringBuffer sb = new StringBuffer("MemberDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", mobile='").append(mobile).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", photo='").append(photo).append('\'');
         sb.append(", registerTime=").append(registerTime);
-        sb.append("]");
+        sb.append(", imageCode='").append(imageCode).append('\'');
+        sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 
