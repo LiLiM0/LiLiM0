@@ -123,7 +123,7 @@ public class SmsService {
         SmsExample example = new SmsExample();
         SmsExample.Criteria criteria = example.createCriteria();
         // 查找5分钟内同手机号同操作发送记录
-        criteria.andMobileEqualTo(smsDto.getMobile()).andUseEqualTo(smsDto.getUse()).andAtGreaterThan(new Date(new Date().getTime() - 1 * 60 * 1000));
+        criteria.andMobileEqualTo(smsDto.getMobile()).andUseEqualTo(smsDto.getUse()).andAtGreaterThan(new Date(new Date().getTime() - 5 * 60 * 1000));
         List<Sms> smsList = smsMapper.selectByExample(example);
 
         if (smsList != null && smsList.size() > 0) {

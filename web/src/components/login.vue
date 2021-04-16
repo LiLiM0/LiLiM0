@@ -16,7 +16,7 @@
                 <input id="image-code-input" class="form-control" type="text" placeholder="验证码"
                        v-model="member.imageCode">
                 <div class="input-group-addon" id="image-code-addon">
-                  <img id="image-code" alt="验证码" v-on:click="loadImageCode()"/>
+                  <img id="image-code" height="100%" width="100%" alt="验证码" v-on:click="loadImageCode()"/>
                 </div>
               </div>
             </div>
