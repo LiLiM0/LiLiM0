@@ -90,7 +90,7 @@
                 <h4 class="modal-title">角色资源关联配置</h4>
               </div>
               <div class="modal-body">
-                //资源树
+                <!--资源树-->
                 <ul id="tree" class="ztree"></ul>
               </div>
               <div class="modal-footer">

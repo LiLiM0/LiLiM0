@@ -113,10 +113,6 @@
           methods: {
             login() {
               let _this = this;
-
-              //将明文存储到缓存中
-              // let passwordShow = _this.user.password;
-
               //如果密码是从缓存中带出来的，则不需要重新加密
               let md5 = hex_md5(_this.user.password)
               let rememberUser = LocalStorage.get(LOCAL_KEY_REMEMBER_USER) || {};
@@ -127,7 +123,8 @@
               _this.user.imageCodeToken = _this.imageCodeToken;
 
               Loading.show();
-              _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/login', _this.user).then((response) => {
+              _this.$ajax.post(process.env.VUE_APP_SERVER + '/system/admin/user/login', _this.user)
+                  .then((response) => {
                 Loading.hide();
                 let resp = response.data;
                 if (resp.success) {
@@ -138,7 +135,6 @@
                   //判断“记住我”
                   if (_this.remember){
                     //如果勾选记住我，则将用户名密码保存到本地缓存
-                    //原：这里需要保存密码明文，否则登录时又会再加一层密
                     //新：这里需要保存密码密文，并保存密文md5，用于检测密码是否被重新输入过
                     let md5 = hex_md5(_this.user.password)
                     LocalStorage.set(LOCAL_KEY_REMEMBER_USER,{

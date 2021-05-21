@@ -262,6 +262,16 @@
                 _this.section.video = video;
             },
 
+            /**
+             * 获取视频时长
+             */
+            getTime() {
+              let _this = this;
+              setTimeout(()=>{
+                _this.section.time = parseInt(document.getElementById("video").duration,10)
+              },600)
+            },
+
             // /**
             //  * 获取视频时长
             //  *
@@ -272,15 +282,7 @@
             //     _this.section.time = parseInt(ele.duration, 10);
             // },
 
-            /**
-             * 获取视频时长
-             */
-            getTime() {
-              let _this = this;
-              setTimeout(()=>{
-                _this.section.time = parseInt(document.getElementById("video").duration,10)
-              },600)
-          },
+
 
         }
     }

@@ -44,7 +44,7 @@ public class UploadController {
     private FileService fileService;
 
     @RequestMapping("/upload")
-    public ResponseDto upload(@RequestParam MultipartFile file, String use) throws IOException {
+    public ResponseDto upload(@RequestParam MultipartFile  file, String use) throws IOException {
         LOG.info("上传图片开始");
         LOG.info("图片名字：" + file.getOriginalFilename());
         LOG.info("图片大小：" + String.valueOf(file.getSize()) + "字节");

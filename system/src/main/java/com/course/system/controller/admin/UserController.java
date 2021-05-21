@@ -52,7 +52,6 @@ public class UserController {
         ValidatorUtil.length(userDto.getName(), "昵称", 1, 50);
         ValidatorUtil.require(userDto.getPassword(), "密码");
 
-
         ResponseDto responseDto = new ResponseDto();
         userService.save(userDto);
         responseDto.setContent(userDto);

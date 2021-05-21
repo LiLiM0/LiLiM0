@@ -41,7 +41,6 @@ public class FileController {
         ValidatorUtil.length(fileDto.getName(), "文件名", 1, 100);
         ValidatorUtil.length(fileDto.getSuffix(), "后缀", 1, 10);
 
-
         ResponseDto responseDto = new ResponseDto();
         fileService.save(fileDto);
         responseDto.setContent(fileDto);
