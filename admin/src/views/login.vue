@@ -147,7 +147,8 @@
                     //如果没有勾选“记住我",要把本地缓存清空，否则按照mounted的逻辑，下次打开时会自动显示用户名密码
                     LocalStorage.set(LOCAL_KEY_REMEMBER_USER,null);
                   }
-                  _this.$router.push("welcome")
+                  // _this.$router.push("/welcome");
+                  window.open("/welcome", "_self")
                 } else {
                   Toast.warning(resp.message);
                   _this.user.password = "";

@@ -552,7 +552,7 @@
 
             _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
             // 进入后刷新，解决登录跳到welcome后侧边栏失效不能点开侧边栏子菜单的问题
-            $.getScript('/ace/assets/js/ace.min.js');
+            // $.getScript('/ace/assets/js/ace.min.js');
 
             // _this.loginUser = SessionStorage.get("USER");
             _this.loginUser = Tool.getLoginUser();
