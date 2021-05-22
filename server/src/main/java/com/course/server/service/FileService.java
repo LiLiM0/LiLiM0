@@ -10,6 +10,7 @@ import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mysql.jdbc.StringUtils;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,6 +29,7 @@ public class FileService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         FileExample fileExample = new FileExample();
+        fileExample.setOrderByClause("created_at desc");
         List<File> fileList = fileMapper.selectByExample(fileExample);
         PageInfo<File> pageInfo = new PageInfo<>(fileList);
         pageDto.setTotal(pageInfo.getTotal());

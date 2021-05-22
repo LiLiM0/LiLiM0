@@ -32,21 +32,6 @@ primary key (`id`)
 )engine = innodb default charset=utf8mb4 comment = '大章';
 
 insert into `chapter` (id, course_id, name) values ('00000001','00000000','测试大章01');
-insert into `chapter` (id, course_id, name) values ('00000002','00000000','测试大章02');
-insert into `chapter` (id, course_id, name) values ('00000003','00000000','测试大章03');
-insert into `chapter` (id, course_id, name) values ('00000004','00000000','测试大章04');
-insert into `chapter` (id, course_id, name) values ('00000005','00000000','测试大章05');
-insert into `chapter` (id, course_id, name) values ('00000006','00000000','测试大章06');
-insert into `chapter` (id, course_id, name) values ('00000007','00000000','测试大章07');
-insert into `chapter` (id, course_id, name) values ('00000008','00000000','测试大章08');
-insert into `chapter` (id, course_id, name) values ('00000009','00000000','测试大章09');
-insert into `chapter` (id, course_id, name) values ('00000010','00000000','测试大章10');
-insert into `chapter` (id, course_id, name) values ('00000011','00000000','测试大章11');
-insert into `chapter` (id, course_id, name) values ('00000012','00000000','测试大章12');
-insert into `chapter` (id, course_id, name) values ('00000013','00000000','测试大章13');
-insert into `chapter` (id, course_id, name) values ('00000014','00000000','测试大章14');
-insert into `chapter` (id, course_id, name) values ('00000015','00000000','测试大章15');
-
 
 # 小节
 drop table if exists `section`;
@@ -165,7 +150,7 @@ create table `teacher` (
                            primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='讲师';
 
-insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000100', '赵老师', 'nn1', '','高级项目经理','','');
+insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000100', '陈越', 'nn1', 'http://127.0.0.1:9000/file/f/teacher\4vKagITY.jpg','教授','勤奋是学习的枝叶，当然很苦，智慧是学习的花朵，当然香郁。','目前是浙大教书的怪姥姥，主讲课程《数据结构》');
 insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000101', '钱老师', 'nn2', '','全栈工程师','','');
 insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000102', '孙老师', 'nn3', '','高级架构师','','');
 insert into `teacher` (id, name, nickname, image,position,motto,intro) values ('00000103', '李老师', 'nn4', '','高级项目经理','','');
@@ -292,7 +277,6 @@ create table `sms` (
                        primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='短信验证码';
 
-insert into `sms` (id, mobile, code, `use`, at, status) values ('00000000', '12345678901', '123456', 'R', now(), 'N');
 
 # 会员课程报名
 drop table if exists `member_course`;
